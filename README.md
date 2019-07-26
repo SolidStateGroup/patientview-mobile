@@ -63,4 +63,4 @@ is created and then merged into master, so master is considered the latest stabl
 Secured Storage
 ========
 
-All data stored in local storage on Android / iOS is encrypted against a user's secret word. A high level overview of the process can be found [Here](https://gist.github.com/kyle-ssg/7618db7c12155761cc8bdb9bfe9dd537)
+All data stored in local storage on Android / iOS is encrypted against a secure salt using Android and iOS keystore with biometric encryption.
