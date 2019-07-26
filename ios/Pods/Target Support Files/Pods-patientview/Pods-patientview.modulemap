@@ -1,0 +1,6 @@
+module Pods_patientview {
+  umbrella header "Pods-patientview-umbrella.h"
+
+  export *
+  module * { export * }
+}

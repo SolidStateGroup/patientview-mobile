@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "268006930875",
+    "firebase_url": "https://patient-view-dcac9.firebaseio.com",
+    "project_id": "patient-view-dcac9",
+    "storage_bucket": "patient-view-dcac9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:268006930875:android:d82b4dbb339dcc31",
+        "android_client_info": {
+          "package_name": "org.patientview.mobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "268006930875-gg1sah5n8fcuk0f2grpfjcig2d9vnq5a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCusx4G-FdUgbP24Bn_L4pRGZ7jllcBt24"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,1164 @@
+{
+  "user": {
+    "id": 98217,
+    "username": "pvmob1",
+    "forename": "WILLIAM",
+    "surname": "SHAW",
+    "dateOfBirth": "1953-05-12",
+    "deleted": false,
+    "roleDescription": null,
+    "picture": null,
+    "canSwitchUser": false,
+    "email": "bill8183@aol.com",
+    "userFeatures": [
+      {
+        "id": 5111204,
+        "created": 1431621443376,
+        "lastUpdate": 1515170294666,
+        "feature": {
+          "id": 4,
+          "created": 1421064103322,
+          "lastUpdate": null,
+          "name": "GP_MEDICATION",
+          "description": "GP Medication"
+        },
+        "optInStatus": true,
+        "optInHidden": false,
+        "optOutHidden": false,
+        "optInDate": 1515167160970
+      }
+    ],
+    "groupRoles": [
+      {
+        "id": 46932510,
+        "group": {
+          "id": 96,
+          "name": "Edinburgh Royal Infirmary",
+          "shortName": "Edin",
+          "code": "RSC02",
+          "visible": true,
+          "visibleToJoin": true,
+          "groupType": {
+            "id": 1,
+            "created": 1421064103291,
+            "lastUpdate": null,
+            "value": "UNIT",
+            "description": "Unit",
+            "descriptionFriendly": null,
+            "lookupType": {
+              "id": 1,
+              "created": 1421064103288,
+              "lastUpdate": null,
+              "type": "GROUP",
+              "description": "Type of group"
+            },
+            "displayOrder": null
+          },
+          "lastImportDate": 1548946865647,
+          "parentCodes": [],
+          "groupFeatures": [
+            {
+              "id": 24270943,
+              "created": 1473892039106,
+              "lastUpdate": null,
+              "feature": {
+                "id": 14,
+                "created": 1469105210377,
+                "lastUpdate": null,
+                "name": "ENTER_OWN_DIAGNOSES",
+                "description": "Enter Own Diagnoses"
+              }
+            },
+            {
+              "id": 114,
+              "created": 1421065897204,
+              "lastUpdate": null,
+              "feature": {
+                "id": 4,
+                "created": 1421064103322,
+                "lastUpdate": null,
+                "name": "GP_MEDICATION",
+                "description": "GP Medication"
+              }
+            },
+            {
+              "id": 113,
+              "created": 1421065897187,
+              "lastUpdate": null,
+              "feature": {
+                "id": 3,
+                "created": 1421064103321,
+                "lastUpdate": null,
+                "name": "FEEDBACK",
+                "description": "Feedback"
+              }
+            },
+            {
+              "id": 112,
+              "created": 1421065897170,
+              "lastUpdate": null,
+              "feature": {
+                "id": 1,
+                "created": 1421064103321,
+                "lastUpdate": null,
+                "name": "MESSAGING",
+                "description": "Messaging"
+              }
+            }
+          ],
+          "parentGroups": [],
+          "childGroups": [],
+          "links": [
+            {
+              "id": 583919,
+              "created": 1421744354271,
+              "lastUpdate": null,
+              "linkType": null,
+              "link": "http://www.edren.org/info",
+              "name": "Patient info links from Edinburgh",
+              "displayOrder": 1
+            }
+          ],
+          "locations": [
+            {
+              "id": 102,
+              "created": 1421065897085,
+              "lastUpdate": null,
+              "label": "Peritoneal Dialysis Location",
+              "name": "",
+              "phone": "0131 343 1231 or 1219",
+              "address": null,
+              "web": null,
+              "email": null
+            },
+            {
+              "id": 100,
+              "created": 1421065897085,
+              "lastUpdate": null,
+              "label": "Haemodialysis Unit",
+              "name": "Western General Hospital",
+              "phone": "0131 537 2566",
+              "address": "Western General, Edinburgh",
+              "web": null,
+              "email": null
+            },
+            {
+              "id": 101,
+              "created": 1421065897085,
+              "lastUpdate": null,
+              "label": "Haemodialysis Unit",
+              "name": "Royal Infirmary Outpatient Dialysis Unit",
+              "phone": "0131 242 1208/ 1201/ 1210/ 1211/ 1298",
+              "address": "Royal Infirmary, Edinburgh",
+              "web": null,
+              "email": null
+            },
+            {
+              "id": 98,
+              "created": 1421065897085,
+              "lastUpdate": null,
+              "label": "Haemodialysis Unit",
+              "name": "St John's Hospital",
+              "phone": null,
+              "address": "Livingston, West Lothian",
+              "web": null,
+              "email": null
+            },
+            {
+              "id": 99,
+              "created": 1421065897085,
+              "lastUpdate": null,
+              "label": "Haemodialysis Unit",
+              "name": "Borders General Hospital",
+              "phone": "01896 826637",
+              "address": "Melrose, Scottish Borders",
+              "web": null,
+              "email": null
+            },
+            {
+              "id": 97,
+              "created": 1421065897085,
+              "lastUpdate": null,
+              "label": "Haemodialysis Unit",
+              "name": "Borders General Hospital",
+              "phone": "01896 826637",
+              "address": "Melrose, Scottish Borders",
+              "web": null,
+              "email": null
+            }
+          ]
+        },
+        "role": {
+          "id": 1,
+          "name": "PATIENT",
+          "description": "Patient",
+          "visible": true
+        }
+      },
+      {
+        "id": 47315929,
+        "group": {
+          "id": 5,
+          "name": "ECS",
+          "shortName": "ECS",
+          "code": "ECS",
+          "visible": false,
+          "visibleToJoin": false,
+          "groupType": {
+            "id": 1,
+            "created": 1421064103291,
+            "lastUpdate": null,
+            "value": "UNIT",
+            "description": "Unit",
+            "descriptionFriendly": null,
+            "lookupType": {
+              "id": 1,
+              "created": 1421064103288,
+              "lastUpdate": null,
+              "type": "GROUP",
+              "description": "Type of group"
+            },
+            "displayOrder": null
+          },
+          "lastImportDate": 1541041406406,
+          "parentCodes": [],
+          "groupFeatures": [],
+          "parentGroups": [],
+          "childGroups": [],
+          "links": [],
+          "locations": []
+        },
+        "role": {
+          "id": 1,
+          "name": "PATIENT",
+          "description": "Patient",
+          "visible": true
+        }
+      },
+      {
+        "id": 98223,
+        "group": {
+          "id": 1,
+          "name": "Generic",
+          "shortName": "Generic",
+          "code": "Generic",
+          "visible": false,
+          "visibleToJoin": false,
+          "groupType": {
+            "id": 2,
+            "created": 1421064103292,
+            "lastUpdate": null,
+            "value": "SPECIALTY",
+            "description": "Specialty",
+            "descriptionFriendly": null,
+            "lookupType": {
+              "id": 1,
+              "created": 1421064103288,
+              "lastUpdate": null,
+              "type": "GROUP",
+              "description": "Type of group"
+            },
+            "displayOrder": null
+          },
+          "lastImportDate": null,
+          "parentCodes": [],
+          "groupFeatures": [],
+          "parentGroups": [],
+          "childGroups": [],
+          "links": [],
+          "locations": []
+        },
+        "role": {
+          "id": 7,
+          "name": "MEMBER",
+          "description": "Logged-in Users",
+          "visible": false
+        }
+      },
+      {
+        "id": 46932513,
+        "group": {
+          "id": 2,
+          "name": "Renal",
+          "shortName": "Renal",
+          "code": "Renal",
+          "visible": true,
+          "visibleToJoin": true,
+          "groupType": {
+            "id": 2,
+            "created": 1421064103292,
+            "lastUpdate": null,
+            "value": "SPECIALTY",
+            "description": "Specialty",
+            "descriptionFriendly": null,
+            "lookupType": {
+              "id": 1,
+              "created": 1421064103288,
+              "lastUpdate": null,
+              "type": "GROUP",
+              "description": "Type of group"
+            },
+            "displayOrder": null
+          },
+          "lastImportDate": null,
+          "parentCodes": [],
+          "groupFeatures": [],
+          "parentGroups": [],
+          "childGroups": [],
+          "links": [
+            {
+              "id": 165626,
+              "created": 1421082844799,
+              "lastUpdate": null,
+              "linkType": null,
+              "link": "http://www.edren.org/pages/edreninfo/long-list.php",
+              "name": "Kidney words explained (EdREN)",
+              "displayOrder": 4
+            },
+            {
+              "id": 21098869,
+              "created": 1467740905156,
+              "lastUpdate": null,
+              "linkType": null,
+              "link": "http://www.britishkidney-pa.co.uk/",
+              "name": "British Kidney Patient Association",
+              "displayOrder": 1
+            },
+            {
+              "id": 165874,
+              "created": 1421082883019,
+              "lastUpdate": null,
+              "linkType": null,
+              "link": "http://www.infokid.org.uk/",
+              "name": "Links about diseases in children (Infokid)",
+              "displayOrder": 6
+            },
+            {
+              "id": 165704,
+              "created": 1421082857315,
+              "lastUpdate": null,
+              "linkType": null,
+              "link": "http://kidney.niddk.nih.gov/kudiseases/a-z.asp",
+              "name": "Kidney and urologic diseases from the NIDDK",
+              "displayOrder": 5
+            },
+            {
+              "id": 165782,
+              "created": 1421082870742,
+              "lastUpdate": null,
+              "linkType": null,
+              "link": "https://www.patientview.org/infoLinks.do",
+              "name": "See all our info links (on all diseases and treatments)",
+              "displayOrder": 7
+            },
+            {
+              "id": 165559,
+              "created": 1421082834307,
+              "lastUpdate": null,
+              "linkType": null,
+              "link": "http://www.kidney.org.uk/help/medical-information-from-the-nkf-/kidney-diseases-index/",
+              "name": "Kidney info from the NKF",
+              "displayOrder": 2
+            },
+            {
+              "id": 32848446,
+              "created": 1489572421770,
+              "lastUpdate": null,
+              "linkType": null,
+              "link": "http://www.pkdcharity.org.uk/",
+              "name": "PKD Charity",
+              "displayOrder": 3
+            }
+          ],
+          "locations": []
+        },
+        "role": {
+          "id": 1,
+          "name": "PATIENT",
+          "description": "Patient",
+          "visible": true
+        }
+      }
+    ],
+    "currentLogin": 1548953870665,
+    "currentLoginIpAddress": "217.138.50.154",
+    "lastLogin": 1548953797259,
+    "lastLoginIpAddress": "217.138.50.154",
+    "identifiers": [
+      {
+        "id": 98224,
+        "created": 1421076211213,
+        "lastUpdate": null,
+        "identifierType": {
+          "id": 21,
+          "created": 1421064103297,
+          "lastUpdate": null,
+          "value": "CHI_NUMBER",
+          "description": "CHI Number",
+          "descriptionFriendly": null,
+          "lookupType": {
+            "id": 8,
+            "created": 1421064103290,
+            "lastUpdate": null,
+            "type": "IDENTIFIER",
+            "description": "Identifier"
+          },
+          "displayOrder": null
+        },
+        "identifier": "1205535218"
+      }
+    ],
+    "locked": false,
+    "emailVerified": false,
+    "dummy": false,
+    "contactNumber": "07711807162",
+    "created": 1298309427000,
+    "changePassword": false,
+    "latestDataReceivedDate": 1528311943219,
+    "latestDataReceivedBy": {
+      "id": 96,
+      "name": "Edinburgh Royal Infirmary",
+      "shortName": "Edin",
+      "code": "RSC02",
+      "visible": true,
+      "visibleToJoin": true,
+      "groupType": {
+        "id": 1,
+        "created": 1421064103291,
+        "lastUpdate": null,
+        "value": "UNIT",
+        "description": "Unit",
+        "descriptionFriendly": null,
+        "lookupType": {
+          "id": 1,
+          "created": 1421064103288,
+          "lastUpdate": null,
+          "type": "GROUP",
+          "description": "Type of group"
+        },
+        "displayOrder": null
+      },
+      "lastImportDate": 1548946865647,
+      "parentCodes": [],
+      "groupFeatures": [
+        {
+          "id": 24270943,
+          "created": 1473892039106,
+          "lastUpdate": null,
+          "feature": {
+            "id": 14,
+            "created": 1469105210377,
+            "lastUpdate": null,
+            "name": "ENTER_OWN_DIAGNOSES",
+            "description": "Enter Own Diagnoses"
+          }
+        },
+        {
+          "id": 114,
+          "created": 1421065897204,
+          "lastUpdate": null,
+          "feature": {
+            "id": 4,
+            "created": 1421064103322,
+            "lastUpdate": null,
+            "name": "GP_MEDICATION",
+            "description": "GP Medication"
+          }
+        },
+        {
+          "id": 113,
+          "created": 1421065897187,
+          "lastUpdate": null,
+          "feature": {
+            "id": 3,
+            "created": 1421064103321,
+            "lastUpdate": null,
+            "name": "FEEDBACK",
+            "description": "Feedback"
+          }
+        },
+        {
+          "id": 112,
+          "created": 1421065897170,
+          "lastUpdate": null,
+          "feature": {
+            "id": 1,
+            "created": 1421064103321,
+            "lastUpdate": null,
+            "name": "MESSAGING",
+            "description": "Messaging"
+          }
+        }
+      ],
+      "parentGroups": [],
+      "childGroups": [],
+      "links": [
+        {
+          "id": 583919,
+          "created": 1421744354271,
+          "lastUpdate": null,
+          "linkType": null,
+          "link": "http://www.edren.org/info",
+          "name": "Patient info links from Edinburgh",
+          "displayOrder": 1
+        }
+      ],
+      "locations": [
+        {
+          "id": 102,
+          "created": 1421065897085,
+          "lastUpdate": null,
+          "label": "Peritoneal Dialysis Location",
+          "name": "",
+          "phone": "0131 343 1231 or 1219",
+          "address": null,
+          "web": null,
+          "email": null
+        },
+        {
+          "id": 100,
+          "created": 1421065897085,
+          "lastUpdate": null,
+          "label": "Haemodialysis Unit",
+          "name": "Western General Hospital",
+          "phone": "0131 537 2566",
+          "address": "Western General, Edinburgh",
+          "web": null,
+          "email": null
+        },
+        {
+          "id": 101,
+          "created": 1421065897085,
+          "lastUpdate": null,
+          "label": "Haemodialysis Unit",
+          "name": "Royal Infirmary Outpatient Dialysis Unit",
+          "phone": "0131 242 1208/ 1201/ 1210/ 1211/ 1298",
+          "address": "Royal Infirmary, Edinburgh",
+          "web": null,
+          "email": null
+        },
+        {
+          "id": 98,
+          "created": 1421065897085,
+          "lastUpdate": null,
+          "label": "Haemodialysis Unit",
+          "name": "St John's Hospital",
+          "phone": null,
+          "address": "Livingston, West Lothian",
+          "web": null,
+          "email": null
+        },
+        {
+          "id": 99,
+          "created": 1421065897085,
+          "lastUpdate": null,
+          "label": "Haemodialysis Unit",
+          "name": "Borders General Hospital",
+          "phone": "01896 826637",
+          "address": "Melrose, Scottish Borders",
+          "web": null,
+          "email": null
+        },
+        {
+          "id": 97,
+          "created": 1421065897085,
+          "lastUpdate": null,
+          "label": "Haemodialysis Unit",
+          "name": "Borders General Hospital",
+          "phone": "01896 826637",
+          "address": "Melrose, Scottish Borders",
+          "web": null,
+          "email": null
+        }
+      ]
+    },
+    "hideSecretWordNotification": true,
+    "secretWordIsSet": true,
+    "apiKey": null
+  },
+  "token": "bdczPTqmKZPGLme9qMQ67nVQiPQIollzKG0hgD45yyLcY7bh",
+  "expiration": 2180092907906,
+  "created": 1548953867906,
+  "auditActions": null,
+  "externalStandards": null,
+  "groupFeatures": null,
+  "groupMessagingEnabled": true,
+  "patientFeatures": null,
+  "patientMessagingFeatureTypes": ["MESSAGING", "DEFAULT_MESSAGING_CONTACT"],
+  "patientRoles": null,
+  "routes": [
+    {
+      "id": 1,
+      "created": 1421064103327,
+      "displayOrder": 10,
+      "url": "/dashboard",
+      "templateUrl": "views/dashboard.html",
+      "controller": "DashboardCtrl",
+      "title": "Home",
+      "lookup": {
+        "id": 4,
+        "created": 1421064103293,
+        "lastUpdate": null,
+        "value": "TOP",
+        "description": "Top",
+        "descriptionFriendly": null,
+        "lookupType": {
+          "id": 2,
+          "created": 1421064103288,
+          "lastUpdate": null,
+          "type": "MENU",
+          "description": "Type of menu"
+        },
+        "displayOrder": null
+      }
+    },
+    {
+      "id": 18,
+      "created": 1421064103334,
+      "displayOrder": 15,
+      "url": "/news",
+      "templateUrl": "views/news.html",
+      "controller": "NewsCtrl",
+      "title": "News",
+      "lookup": {
+        "id": 4,
+        "created": 1421064103293,
+        "lastUpdate": null,
+        "value": "TOP",
+        "description": "Top",
+        "descriptionFriendly": null,
+        "lookupType": {
+          "id": 2,
+          "created": 1421064103288,
+          "lastUpdate": null,
+          "type": "MENU",
+          "description": "Type of menu"
+        },
+        "displayOrder": null
+      }
+    },
+    {
+      "id": 4,
+      "created": 1421064103329,
+      "displayOrder": 17,
+      "url": "/feedback",
+      "templateUrl": "views/feedback.html",
+      "controller": "FeedbackCtrl",
+      "title": "Feedback",
+      "lookup": {
+        "id": 5,
+        "created": 1421064103293,
+        "lastUpdate": null,
+        "value": "NOT_DISPLAYED",
+        "description": "Not Displayed",
+        "descriptionFriendly": null,
+        "lookupType": {
+          "id": 2,
+          "created": 1421064103288,
+          "lastUpdate": null,
+          "type": "MENU",
+          "description": "Type of menu"
+        },
+        "displayOrder": null
+      }
+    },
+    {
+      "id": 5,
+      "created": 1421064103329,
+      "displayOrder": 18,
+      "url": "/help",
+      "templateUrl": "views/help.html",
+      "controller": "HelpCtrl",
+      "title": "Help",
+      "lookup": {
+        "id": 22,
+        "created": 1421064103298,
+        "lastUpdate": null,
+        "value": "NAV",
+        "description": "Nav",
+        "descriptionFriendly": null,
+        "lookupType": {
+          "id": 2,
+          "created": 1421064103288,
+          "lastUpdate": null,
+          "type": "MENU",
+          "description": "Type of menu"
+        },
+        "displayOrder": null
+      }
+    },
+    {
+      "id": 2,
+      "created": 1421064103328,
+      "displayOrder": 19,
+      "url": "/conversations",
+      "templateUrl": "views/conversations.html",
+      "controller": "ConversationsCtrl",
+      "title": "Messages",
+      "lookup": {
+        "id": 22,
+        "created": 1421064103298,
+        "lastUpdate": null,
+        "value": "NAV",
+        "description": "Nav",
+        "descriptionFriendly": null,
+        "lookupType": {
+          "id": 2,
+          "created": 1421064103288,
+          "lastUpdate": null,
+          "type": "MENU",
+          "description": "Type of menu"
+        },
+        "displayOrder": null
+      }
+    },
+    {
+      "id": 6,
+      "created": 1421064103330,
+      "displayOrder": 30,
+      "url": "/mydetails",
+      "templateUrl": "views/mydetails.html",
+      "controller": "MydetailsCtrl",
+      "title": "My Details",
+      "lookup": {
+        "id": 4,
+        "created": 1421064103293,
+        "lastUpdate": null,
+        "value": "TOP",
+        "description": "Top",
+        "descriptionFriendly": null,
+        "lookupType": {
+          "id": 2,
+          "created": 1421064103288,
+          "lastUpdate": null,
+          "type": "MENU",
+          "description": "Type of menu"
+        },
+        "displayOrder": null
+      }
+    },
+    {
+      "id": 19,
+      "created": 1421064103334,
+      "displayOrder": 40,
+      "url": "/myconditions",
+      "templateUrl": "views/myconditions.html",
+      "controller": "MyconditionsCtrl",
+      "title": "My Conditions",
+      "lookup": {
+        "id": 4,
+        "created": 1421064103293,
+        "lastUpdate": null,
+        "value": "TOP",
+        "description": "Top",
+        "descriptionFriendly": null,
+        "lookupType": {
+          "id": 2,
+          "created": 1421064103288,
+          "lastUpdate": null,
+          "type": "MENU",
+          "description": "Type of menu"
+        },
+        "displayOrder": null
+      }
+    },
+    {
+      "id": 7,
+      "created": 1421064103330,
+      "displayOrder": 50,
+      "url": "/results",
+      "templateUrl": "views/results.html",
+      "controller": "ResultsCtrl",
+      "title": "Results",
+      "lookup": {
+        "id": 4,
+        "created": 1421064103293,
+        "lastUpdate": null,
+        "value": "TOP",
+        "description": "Top",
+        "descriptionFriendly": null,
+        "lookupType": {
+          "id": 2,
+          "created": 1421064103288,
+          "lastUpdate": null,
+          "type": "MENU",
+          "description": "Type of menu"
+        },
+        "displayOrder": null
+      }
+    },
+    {
+      "id": 8,
+      "created": 1421064103330,
+      "displayOrder": 51,
+      "url": "/resultsdetail",
+      "templateUrl": "views/resultsdetail.html",
+      "controller": "ResultsDetailCtrl",
+      "title": "Results",
+      "lookup": {
+        "id": 5,
+        "created": 1421064103293,
+        "lastUpdate": null,
+        "value": "NOT_DISPLAYED",
+        "description": "Not Displayed",
+        "descriptionFriendly": null,
+        "lookupType": {
+          "id": 2,
+          "created": 1421064103288,
+          "lastUpdate": null,
+          "type": "MENU",
+          "description": "Type of menu"
+        },
+        "displayOrder": null
+      }
+    },
+    {
+      "id": 24,
+      "created": 1421064103336,
+      "displayOrder": 52,
+      "url": "/resultstable",
+      "templateUrl": "views/resultstable.html",
+      "controller": "ResultsTableCtrl",
+      "title": "Results",
+      "lookup": {
+        "id": 5,
+        "created": 1421064103293,
+        "lastUpdate": null,
+        "value": "NOT_DISPLAYED",
+        "description": "Not Displayed",
+        "descriptionFriendly": null,
+        "lookupType": {
+          "id": 2,
+          "created": 1421064103288,
+          "lastUpdate": null,
+          "type": "MENU",
+          "description": "Type of menu"
+        },
+        "displayOrder": null
+      }
+    },
+    {
+      "id": 21,
+      "created": 1421064103335,
+      "displayOrder": 55,
+      "url": "/resultsenter",
+      "templateUrl": "views/resultsenter.html",
+      "controller": "ResultsEnterCtrl",
+      "title": "Results",
+      "lookup": {
+        "id": 5,
+        "created": 1421064103293,
+        "lastUpdate": null,
+        "value": "NOT_DISPLAYED",
+        "description": "Not Displayed",
+        "descriptionFriendly": null,
+        "lookupType": {
+          "id": 2,
+          "created": 1421064103288,
+          "lastUpdate": null,
+          "type": "MENU",
+          "description": "Type of menu"
+        },
+        "displayOrder": null
+      }
+    },
+    {
+      "id": 22,
+      "created": 1421064103335,
+      "displayOrder": 56,
+      "url": "/diagnostics",
+      "templateUrl": "views/diagnostics.html",
+      "controller": "DiagnosticsCtrl",
+      "title": "Results",
+      "lookup": {
+        "id": 5,
+        "created": 1421064103293,
+        "lastUpdate": null,
+        "value": "NOT_DISPLAYED",
+        "description": "Not Displayed",
+        "descriptionFriendly": null,
+        "lookupType": {
+          "id": 2,
+          "created": 1421064103288,
+          "lastUpdate": null,
+          "type": "MENU",
+          "description": "Type of menu"
+        },
+        "displayOrder": null
+      }
+    },
+    {
+      "id": 9,
+      "created": 1421064103331,
+      "displayOrder": 60,
+      "url": "/medicines",
+      "templateUrl": "views/medicines.html",
+      "controller": "MedicinesCtrl",
+      "title": "Medicines",
+      "lookup": {
+        "id": 4,
+        "created": 1421064103293,
+        "lastUpdate": null,
+        "value": "TOP",
+        "description": "Top",
+        "descriptionFriendly": null,
+        "lookupType": {
+          "id": 2,
+          "created": 1421064103288,
+          "lastUpdate": null,
+          "type": "MENU",
+          "description": "Type of menu"
+        },
+        "displayOrder": null
+      }
+    },
+    {
+      "id": 10,
+      "created": 1421064103331,
+      "displayOrder": 70,
+      "url": "/letters",
+      "templateUrl": "views/letters.html",
+      "controller": "LettersCtrl",
+      "title": "Letters",
+      "lookup": {
+        "id": 4,
+        "created": 1421064103293,
+        "lastUpdate": null,
+        "value": "TOP",
+        "description": "Top",
+        "descriptionFriendly": null,
+        "lookupType": {
+          "id": 2,
+          "created": 1421064103288,
+          "lastUpdate": null,
+          "type": "MENU",
+          "description": "Type of menu"
+        },
+        "displayOrder": null
+      }
+    },
+    {
+      "id": 36,
+      "created": 1523357732156,
+      "displayOrder": 80,
+      "url": "/mymedia",
+      "templateUrl": "views/mymedia.html",
+      "controller": "MyMediaCtrl",
+      "title": "Media",
+      "lookup": {
+        "id": 4,
+        "created": 1421064103293,
+        "lastUpdate": null,
+        "value": "TOP",
+        "description": "Top",
+        "descriptionFriendly": null,
+        "lookupType": {
+          "id": 2,
+          "created": 1421064103288,
+          "lastUpdate": null,
+          "type": "MENU",
+          "description": "Type of menu"
+        },
+        "displayOrder": null
+      }
+    },
+    {
+      "id": 34,
+      "created": 1519733155641,
+      "displayOrder": 85,
+      "url": "/research",
+      "templateUrl": "views/research.html",
+      "controller": "ResearchCtrl",
+      "title": "Research",
+      "lookup": {
+        "id": 4,
+        "created": 1421064103293,
+        "lastUpdate": null,
+        "value": "TOP",
+        "description": "Top",
+        "descriptionFriendly": null,
+        "lookupType": {
+          "id": 2,
+          "created": 1421064103288,
+          "lastUpdate": null,
+          "type": "MENU",
+          "description": "Type of menu"
+        },
+        "displayOrder": null
+      }
+    },
+    {
+      "id": 12,
+      "created": 1421064103331,
+      "displayOrder": 90,
+      "url": "/contact",
+      "templateUrl": "views/contact.html",
+      "controller": "ContactCtrl",
+      "title": "Contact",
+      "lookup": {
+        "id": 4,
+        "created": 1421064103293,
+        "lastUpdate": null,
+        "value": "TOP",
+        "description": "Top",
+        "descriptionFriendly": null,
+        "lookupType": {
+          "id": 2,
+          "created": 1421064103288,
+          "lastUpdate": null,
+          "type": "MENU",
+          "description": "Type of menu"
+        },
+        "displayOrder": null
+      }
+    },
+    {
+      "id": 28,
+      "created": 1467110877432,
+      "displayOrder": 170,
+      "url": "/surveys/managing",
+      "templateUrl": "views/surveys/managing.html",
+      "controller": "SurveysManagingCtrl",
+      "title": "Managing Your Health",
+      "lookup": {
+        "id": 5,
+        "created": 1421064103293,
+        "lastUpdate": null,
+        "value": "NOT_DISPLAYED",
+        "description": "Not Displayed",
+        "descriptionFriendly": null,
+        "lookupType": {
+          "id": 2,
+          "created": 1421064103288,
+          "lastUpdate": null,
+          "type": "MENU",
+          "description": "Type of menu"
+        },
+        "displayOrder": null
+      }
+    },
+    {
+      "id": 29,
+      "created": 1467110877432,
+      "displayOrder": 180,
+      "url": "/surveys/symptoms",
+      "templateUrl": "views/surveys/symptoms.html",
+      "controller": "SurveysSymptomsCtrl",
+      "title": "Your Symptoms",
+      "lookup": {
+        "id": 5,
+        "created": 1421064103293,
+        "lastUpdate": null,
+        "value": "NOT_DISPLAYED",
+        "description": "Not Displayed",
+        "descriptionFriendly": null,
+        "lookupType": {
+          "id": 2,
+          "created": 1421064103288,
+          "lastUpdate": null,
+          "type": "MENU",
+          "description": "Type of menu"
+        },
+        "displayOrder": null
+      }
+    },
+    {
+      "id": 30,
+      "created": 1467110877432,
+      "displayOrder": 190,
+      "url": "/surveys/overall",
+      "templateUrl": "views/surveys/overall.html",
+      "controller": "SurveysOverallCtrl",
+      "title": "Your Overall Health",
+      "lookup": {
+        "id": 5,
+        "created": 1421064103293,
+        "lastUpdate": null,
+        "value": "NOT_DISPLAYED",
+        "description": "Not Displayed",
+        "descriptionFriendly": null,
+        "lookupType": {
+          "id": 2,
+          "created": 1421064103288,
+          "lastUpdate": null,
+          "type": "MENU",
+          "description": "Type of menu"
+        },
+        "displayOrder": null
+      }
+    },
+    {
+      "id": 33,
+      "created": 1479737241362,
+      "displayOrder": 220,
+      "url": "/resultsedit",
+      "templateUrl": "views/resultsedit.html",
+      "controller": "ResultsEditCtrl",
+      "title": "Edit Own Results",
+      "lookup": {
+        "id": 5,
+        "created": 1421064103293,
+        "lastUpdate": null,
+        "value": "NOT_DISPLAYED",
+        "description": "Not Displayed",
+        "descriptionFriendly": null,
+        "lookupType": {
+          "id": 2,
+          "created": 1421064103288,
+          "lastUpdate": null,
+          "type": "MENU",
+          "description": "Type of menu"
+        },
+        "displayOrder": null
+      }
+    }
+  ],
+  "securityRoles": null,
+  "staffFeatures": null,
+  "staffRoles": null,
+  "userFeatures": [
+    {
+      "id": 4,
+      "created": 1421064103322,
+      "lastUpdate": null,
+      "name": "GP_MEDICATION",
+      "description": "GP Medication"
+    }
+  ],
+  "userGroups": [
+    {
+      "id": 96,
+      "name": "Edinburgh Royal Infirmary",
+      "shortName": "Edin",
+      "code": "RSC02",
+      "visible": true,
+      "visibleToJoin": true,
+      "groupType": {
+        "id": 1,
+        "created": 1421064103291,
+        "lastUpdate": null,
+        "value": "UNIT",
+        "description": "Unit",
+        "descriptionFriendly": null,
+        "lookupType": {
+          "id": 1,
+          "created": 1421064103288,
+          "lastUpdate": null,
+          "type": "GROUP",
+          "description": "Type of group"
+        },
+        "displayOrder": null
+      },
+      "lastImportDate": 1548946865647,
+      "parentCodes": ["Renal"]
+    }
+  ],
+  "secretWordIndexes": null,
+  "secretWordChoices": null,
+  "checkSecretWord": false,
+  "secretWordToken": null,
+  "mustSetSecretWord": false,
+  "shouldEnterCondition": false,
+  "secretWord": null,
+  "secretWordSalt": "8tp;&WBxM3.%9/c?"
+}
