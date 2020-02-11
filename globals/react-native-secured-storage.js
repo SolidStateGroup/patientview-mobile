@@ -46,7 +46,9 @@ const SecuredAsyncStorage = class {
                     {accessControl: Keychain.ACCESS_CONTROL.BIOMETRY_CURRENT_SET_OR_DEVICE_PASSCODE, service} : {service});
             } else {
                 const canUseBiometrics = !!supportedBiometryType;
-                keychainAuth = await Keychain.canImplyAuthentication({authenticationType: Keychain.AUTHENTICATION_TYPE.DEVICE_PASSCODE_OR_BIOMETRICS});
+                if (!DeviceInfo.isEmulator()) {
+                    keychainAuth = await Keychain.canImplyAuthentication({authenticationType: Keychain.AUTHENTICATION_TYPE.DEVICE_PASSCODE_OR_BIOMETRICS});
+                }
                 await Keychain.setGenericPassword(STORAGE_KEY, localStorageKey,
                     keychainAuth ? {accessControl: canUseBiometrics ? Keychain.ACCESS_CONTROL.BIOMETRY_CURRENT_SET : Keychain.ACCESS_CONTROL.DEVICE_PASSCODE, service} : {service});
             }

@@ -1,10 +1,10 @@
 PODS:
-  - Charts (3.0.1):
-    - Charts/Core (= 3.0.1)
-  - Charts/Core (3.0.1)
-  - Crashlytics (3.12.0):
-    - Fabric (~> 1.9.0)
-  - Fabric (1.9.0)
+  - Charts (3.3.0):
+    - Charts/Core (= 3.3.0)
+  - Charts/Core (3.3.0)
+  - Crashlytics (3.14.0):
+    - Fabric (~> 1.10.2)
+  - Fabric (1.10.2)
   - Firebase/Core (5.15.0):
     - Firebase/CoreOnly
     - FirebaseAnalytics (= 5.4.0)
@@ -66,21 +66,18 @@ PODS:
   - nanopb/decode (0.3.901)
   - nanopb/encode (0.3.901)
   - Protobuf (3.6.1)
-  - SwiftyJSON (3.1.4)
+  - SwiftyJSON (4.0.0)
 
 DEPENDENCIES:
-  - Charts (= 3.0.1)
-  - Crashlytics
-  - Fabric
+  - Charts (= 3.3.0)
+  - Crashlytics (~> 3.14)
+  - Fabric (~> 1.10.2)
   - Firebase/Core (~> 5.15.0)
   - Firebase/Messaging (~> 5.15.0)
-  - SwiftyJSON (= 3.1.4)
+  - SwiftyJSON (= 4.0.0)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
-    - Charts
-    - Crashlytics
-    - Fabric
+  https://github.com/CocoaPods/Specs.git:
     - Firebase
     - FirebaseAnalytics
     - FirebaseAnalyticsInterop
@@ -91,12 +88,16 @@ SPEC REPOS:
     - GoogleUtilities
     - nanopb
     - Protobuf
+  trunk:
+    - Charts
+    - Crashlytics
+    - Fabric
     - SwiftyJSON
 
 SPEC CHECKSUMS:
-  Charts: 0e84f4418e87dad6a9edde221fba37ebb51d3ba7
-  Crashlytics: 07fb167b1694128c1c9a5a5cc319b0e9c3ca0933
-  Fabric: f988e33c97f08930a413e08123064d2e5f68d655
+  Charts: e0dd4cd8f257bccf98407b58183ddca8e8d5b578
+  Crashlytics: 540b7e5f5da5a042647227a5e3ac51d85eed06df
+  Fabric: 706c8b8098fff96c33c0db69cbf81f9c551d0d74
   Firebase: 8bb9268bff82374f2cbaaabb143e725743c316ae
   FirebaseAnalytics: c06f9d70577d79074214700a71fd5d39de5550fb
   FirebaseAnalyticsInterop: e5f21be9af6548372e2f0815834ff909bff395a2
@@ -107,8 +108,8 @@ SPEC CHECKSUMS:
   GoogleUtilities: 111a012f4c3a29c9e7c954c082fafd6ee3c999c0
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   Protobuf: 1eb9700044745f00181c136ef21b8ff3ad5a0fd5
-  SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
+  SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
 
-PODFILE CHECKSUM: 4f316a24d913386b68ff3dcb3238f8cea84e9a2a
+PODFILE CHECKSUM: 0e956318e6b9590ad88d4f3f191356f039a3fe94
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.8.4
