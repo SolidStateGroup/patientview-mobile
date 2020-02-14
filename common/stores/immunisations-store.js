@@ -17,6 +17,7 @@ var controller = {
                 .then((res) => {
                     store.model = store.model || [];
                     store.model.push(res);
+                    store.model = _.orderBy(store.model, h => h.immunisationDate, ['desc']);
                     SecuredStorage.setItem('immunisations', store.model);
                     store.saved();
                 }).catch(_.partial(AjaxHandler.error, store));

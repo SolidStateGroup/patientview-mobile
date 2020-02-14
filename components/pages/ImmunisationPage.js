@@ -8,7 +8,11 @@ const Immunisation = class extends Component {
     constructor(props, context) {
         super(props, context);
         const { entry } = this.props;
-        this.state = {...entry, edit: !!entry};
+        this.state = {
+            ...entry,
+            edit: !!entry,
+            immunisationDate: entry ? entry.immunisationDate : moment().startOf('day'),
+        };
         ES6Component(this)
     }
 
@@ -37,6 +41,8 @@ const Immunisation = class extends Component {
             })
     }
 
+    setOtherImmunisationType = (other) => this.setState({other});
+
     save = () => {
         const { edit, id, immunisationDate, codelist } = this.state;
         const immunisation = {
@@ -50,6 +56,12 @@ const Immunisation = class extends Component {
         }
     };
 
+    isValid = () => {
+        const { codelist, other } = this.state;
+        if (!codelist || (codelist === 'OTHER' && !other)) return false;
+        return true;
+    }
+
     onNavigatorEvent = (event) => {
         if (event.id == Constants.navEvents.SHOW) {
             Utils.recordScreenView('INS Immunisation Screen');
@@ -61,9 +73,8 @@ const Immunisation = class extends Component {
 
     render() {
         const {
-            edit, immunisationDate, codelist,
+            edit, immunisationDate, codelist, other,
         } = this.state;
-        console.log(immunisationDate)
         return (
             <Flex>
                 <NetworkProvider>
@@ -80,7 +91,7 @@ const Immunisation = class extends Component {
                                                 <Text style={Styles.label}>Immunisation Date</Text>
                                                 <DatePicker
                                                     style={{alignSelf: "stretch", width: "100%", height: 54,}}
-                                                    date={immunisationDate ? moment(immunisationDate) : moment()}
+                                                    date={moment(immunisationDate)}
                                                     mode="date"
                                                     maxDate={moment()}
                                                     placeholder="Select date"
@@ -113,11 +124,24 @@ const Immunisation = class extends Component {
                                                 </SelectBox>
                                             </Column>
                                         </FormGroup>
+
+                                        {codelist === 'OTHER' && (
+                                            <FormGroup>
+                                                <Column>
+                                                    <TextInput
+                                                        value={other}
+                                                        onChangeText={this.setOtherImmunisationType}
+                                                        maxLength={100}
+                                                        placeholder="Please Specify"
+                                                    />
+                                                </Column>
+                                            </FormGroup>
+                                        )}
                                         
                                         <FormGroup style={[Styles.mt10, Styles.mb10]}>
                                             <Column>
                                                 <Button onPress={() => this.save(false)}
-                                                        disabled={!isConnected || this.state.saving}>
+                                                        disabled={!isConnected || this.state.saving || !this.isValid()}>
                                                     {this.state.saving ? "Saving..." : "Save"}
                                                 </Button>
                                             </Column>

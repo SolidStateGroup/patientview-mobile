@@ -502,7 +502,7 @@ module.exports = {
     goINSDiaryRecording: (navigator, entry, edit) => {
         navigator.push({
             screen: "/ins-diary-recording",
-            title: `${entry ? 'Editing' : 'New'} Recording`,
+            title: `${edit ? 'Editing' : 'New'} Recording`,
             backButtonTitle: "",
             passProps: { entry, edit }
         })

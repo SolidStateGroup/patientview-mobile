@@ -12,11 +12,11 @@ const INSDiaryRecording = class extends Component {
         const remissionDate = _.get(entry, 'relapse.remissionDate');
         this.state = {
             ...entry, edit,
-            entryDate: edit ? entry.entryDate : moment().valueOf(),
-            showRelapseFields: entry && entry.relapse,
+            entryDate: edit ? entry.entryDate : moment().startOf('minute').valueOf(),
+            selectedOedema: entry ? entry.oedema && !!entry.oedema.length && entry.oedema[0] : null,
             relapse: {
                 ...((entry && entry.relapse) ? entry.relapse : {}),
-                relapseDate: entry ? _.get(entry, 'relapse.relapseDate') : moment().valueOf(),
+                relapseDate: entry ? _.get(entry, 'relapse.relapseDate') : moment().startOf('day').valueOf(),
                 remissionDate: remissionDate ? remissionDate : null,
             }
         };
@@ -46,7 +46,7 @@ const INSDiaryRecording = class extends Component {
             })
     }
 
-    setEntryDate = (date) => this.setState({entryDate: moment(date).valueOf()});
+    setEntryDate = (date) => {console.log(date);this.setState({entryDate: moment(date, 'DD-MM-YYYY HH:mm').valueOf()})};
 
     setSystolicBP = (value) => this.setState({systolicBP: value ? value.match(/^\d+$/g) ? value : this.state.systolicBP : ''});
 
@@ -56,17 +56,23 @@ const INSDiaryRecording = class extends Component {
 
     toggleDiastolicExclusion = () => this.setState({diastolicBPExclude: !this.state.diastolicBPExclude});
 
-    setWeight = (value) => this.setState({weight: value ? value.match(/^\d+\.?\d*$/g) ? value : this.state.weight : ''});
+    setWeight = (value) => this.setState({weight: value ? value.match(/^\d+\.?\d{0,1}$/g) ? value : this.state.weight : ''});
 
     toggleWeightExclusion = () => this.setState({weightExclude: !this.state.weightExclude});
 
-    showRelapseOptions = () => this.showYesNoOptions('showRelapseFields', 'Relapse');
+    showInRelapseOptions = () => this.showYesNoOptions('inRelapse', 'Relapse');
 
     showYesNoOptions = (key, title) => {
         API.showOptions(title, ['Yes', 'No'], true)
             .then((i)=> {
                 if (i < 2) {
                     const newState = _.set(this.state, key, i === 0);
+                    if (key === 'inRelapse' && i === 0 && _.get(this.state, 'relapse.remissionDate')) {
+                        newState.relapse = {
+                            ...this.state.relapse,
+                            remissionDate: null,
+                        };
+                    }
                     this.setState(newState);
                 }
             })
@@ -118,22 +124,29 @@ const INSDiaryRecording = class extends Component {
     save = () => {
         const {
             edit, entryDate, dipstickType, systolicBP, systolicBPExclude, diastolicBP, diastolicBPExclude,
-            weight, weightExclude, selectedOedema, oedema, relapse, showRelapseFields, id,
+            weight, weightExclude, selectedOedema, oedema, relapse, inRelapse, id,
         } = this.state;
+
+        if ((!systolicBPExclude && !systolicBP) || (!diastolicBPExclude && !diastolicBP) || (!weightExclude && !weight)) {
+            Alert.alert('Error', 'Weight/Blood pressure needs to be entered, or tick Not Measured if unavailable.');
+            return;
+        }
+
         const recording = {
             ...this.state,
         }
         const hasRelapse = _.get(this.props, 'entry.relapse');
-        if (!hasRelapse && !showRelapseFields) {
+        if (!hasRelapse && !inRelapse) {
             recording.relapse = null;
-        } else if (hasRelapse && !showRelapseFields && !relapse.remissionDate) {
-            Alert.alert('Error', 'Please fill in your relapse remission date');
-            return;
+        } else if (hasRelapse && !inRelapse && !relapse.remissionDate) {
+            // Default to today since thats what the datepicker does
+            recording.relapse.remissionDate = moment().startOf('day').valueOf();
+        } else if (hasRelapse && inRelapse && relapse.remissionDate) {
+            recording.relapse.remissionDate = null;
         }
         if (recording.selectedOedema) delete recording.selectedOedema;
-        recording.inRelapse = recording.relapse != null;
         if (selectedOedema === 'NONE') {
-            recording.oedema = [];
+            recording.oedema = ['NONE'];
         }
         if (edit) {
             AppActions.updateINSDiaryRecording(id, recording);
@@ -153,7 +166,7 @@ const INSDiaryRecording = class extends Component {
     };
 
     renderRelapseMedicationRow = ({item, index}) => {
-        const { name, doseQuantity, doseUnits, doseFrequency, route, started, stopped } = item;
+        const { name, other, doseQuantity, doseUnits, doseFrequency, route, started, stopped } = item;
         return (
             <Row style={[Styles.insDiaryListItem, Styles.mb20]}>
                 <Flex>
@@ -161,13 +174,13 @@ const INSDiaryRecording = class extends Component {
                         <Flex>
                             <Column>
                                 <Text style={Styles.bold}>Medication</Text>
-                                <Text>{Constants.relapseMedication[name]}</Text>
+                                <Text>{name !== 'OTHER' ? Constants.relapseMedication[name] : other}</Text>
                             </Column>
                         </Flex>
                         <Flex>
                             <Column>
                                 <Text style={Styles.bold}>Dose</Text>
-                                <Text>{`${doseQuantity}${doseUnits}`}</Text>
+                                <Text>{doseQuantity ? `${doseQuantity}${doseUnits || ''}` : '-'}</Text>
                             </Column>
                         </Flex>
                     </Row>
@@ -175,13 +188,13 @@ const INSDiaryRecording = class extends Component {
                         <Flex>
                             <Column>
                                 <Text style={Styles.bold}>Frequency</Text>
-                                <Text>{Constants.relapseMedicationFrequency[doseFrequency]}</Text>
+                                <Text>{doseFrequency ? Constants.relapseMedicationFrequency[doseFrequency] : '-'}</Text>
                             </Column>
                         </Flex>
                         <Flex>
                             <Column>
                                 <Text style={Styles.bold}>Route</Text>
-                                <Text>{route}</Text>
+                                <Text>{route || '-'}</Text>
                             </Column>
                         </Flex>
                     </Row>
@@ -212,7 +225,7 @@ const INSDiaryRecording = class extends Component {
     render() {
         const {
             edit, entryDate, dipstickType, systolicBP, systolicBPExclude, diastolicBP, diastolicBPExclude,
-            weight, weightExclude, selectedOedema, oedema, relapse, showRelapseFields,
+            weight, weightExclude, selectedOedema, oedema, relapse, inRelapse,
         } = this.state;
         const { entry } = this.props;
         console.log(edit, entry);
@@ -232,7 +245,7 @@ const INSDiaryRecording = class extends Component {
                                                 <Text style={Styles.label}>Date / Time</Text>
                                                 <DatePicker
                                                     style={{alignSelf: "stretch", width: "100%", height: 54,}}
-                                                    date={entryDate ? moment(entryDate) : moment()}
+                                                    date={entryDate ? moment(entryDate) : moment().startOf('minute')}
                                                     mode="datetime"
                                                     maxDate={moment()}
                                                     placeholder="Select date"
@@ -392,22 +405,22 @@ const INSDiaryRecording = class extends Component {
                                                 <Text style={Styles.label}>Relapse</Text>
                                                 <Row>
                                                     <Flex style={!!selectedOedema ? Styles.mr10 : {}}>
-                                                        <SelectBox onPress={this.showRelapseOptions} style={{width: 150}} disabled={edit}>
-                                                            {showRelapseFields == null ? '' : showRelapseFields ? 'Yes' : 'No'}
+                                                        <SelectBox onPress={this.showInRelapseOptions} style={{width: 150}} disabled={edit}>
+                                                            {inRelapse == null ? '' : inRelapse ? 'Yes' : 'No'}
                                                         </SelectBox>
                                                     </Flex>
                                                 </Row>
                                             </Column>
                                         </FormGroup>
 
-                                        {((entry && entry.relapse) || showRelapseFields) && (
+                                        {((entry && entry.relapse) || inRelapse) && (
                                             <>
                                                 <FormGroup>
                                                     <Column>
                                                         <Text style={Styles.label}>Date of Relapse</Text>
                                                         <DatePicker
                                                             style={{alignSelf: "stretch", width: "100%", height: 54,}}
-                                                            date={(relapse && relapse.relapseDate) ? moment(relapse.relapseDate) : moment()}
+                                                            date={(relapse && relapse.relapseDate) ? moment(relapse.relapseDate) : moment().startOf('day')}
                                                             mode="date"
                                                             maxDate={moment()}
                                                             placeholder="Select date"
@@ -434,10 +447,10 @@ const INSDiaryRecording = class extends Component {
                                                 <FormGroup>
                                                     <Column>
                                                         <Text style={Styles.label}>Date of Remission</Text>
-                                                        {(entry && entry.relapse && !showRelapseFields) ? (
+                                                        {(entry && entry.relapse && !inRelapse) ? (
                                                             <DatePicker
                                                                 style={{alignSelf: "stretch", width: "100%", height: 54,}}
-                                                                date={(relapse && relapse.remissionDate) ? moment(relapse.remissionDate) : null}
+                                                                date={(relapse && relapse.remissionDate) ? moment(relapse.remissionDate) : moment().startOf('day')}
                                                                 mode="date"
                                                                 maxDate={moment()}
                                                                 placeholder="Select date"

@@ -42,7 +42,7 @@ const AddRelapseMedication = class extends Component {
 
     showRouteOptions = () => this.showOptions('route', 'Route', Constants.relapseMedicationRoutes);
 
-    setDoseQuantity = (doseQuantity) => this.setState({doseQuantity});
+    setDoseQuantity = (value) => this.setState({doseQuantity: value ? value.match(/^\d+$/g) ? value : this.state.doseQuantity : ''});
 
     setDateStarted = (date) => this.setState({started: moment(date, 'DD-MM-YYYY').valueOf()});
 
@@ -52,9 +52,9 @@ const AddRelapseMedication = class extends Component {
 
     isValid = () => {
         const {
-            name, doseQuantity, doseUnits, doseFrequency, route, started, stopped, other,
+            name, other,
         } = this.state;
-        if (!name || !doseQuantity || !doseUnits || !doseFrequency || !route || !started) return false;
+        if (!name) return false;
         if (name === 'OTHER' && !other) return false;
         return true;
     }
@@ -90,6 +90,8 @@ const AddRelapseMedication = class extends Component {
                                                     <TextInput
                                                         value={other}
                                                         onChangeText={this.setOtherMedication}
+                                                        maxLength={100}
+                                                        placeholder="Please Specify"
                                                     />
                                                 </Column>
                                             </FormGroup>

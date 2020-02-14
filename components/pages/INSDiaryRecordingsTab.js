@@ -57,7 +57,7 @@ const TheComponent = class extends Component {
     }
 
     renderRow = ({item}) => {
-        const {entryDate, dipstickType, relapse, id} = item;
+        const {entryDate, dipstickType, inRelapse, id} = item;
         return (
             <Row style={[Styles.insDiaryListItem, Styles.mb20]}>
                 <Flex>
@@ -95,7 +95,7 @@ const TheComponent = class extends Component {
                         </Flex>
                         <Flex>
                             <Column>
-                                <Text>{relapse ? 'Yes' : 'No'}</Text>
+                                <Text>{inRelapse ? 'Yes' : 'No'}</Text>
                             </Column>
                         </Flex>
                     </Row>

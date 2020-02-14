@@ -77,7 +77,7 @@ const TheComponent = class extends Component {
                         {insDiaryRecording && (
                             <FormGroup>
                                 <Column>
-                                    <Button onPress={() => routeHelper.goINSDiaryRecordings(this.props.navigator)}>
+                                    <Button onPress={() => routeHelper.goINSDiaryRecordings(this.props.navigator)} style={Styles.buttonINSDiaryRecordings}>
                                         INS Diary Recordings
                                     </Button>
                                 </Column>

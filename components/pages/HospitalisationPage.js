@@ -13,8 +13,8 @@ const Hospitalisation = class extends Component {
             ...entry,
             edit: !!entry,
             showDischargedDate: entry && entry.dateDischarged,
-            dateAdmitted: entry ? entry.dateAdmitted : moment().valueOf(),
-            dateDischarged: entry ? entry.dateDischarged : moment().valueOf(),
+            dateAdmitted: entry ? entry.dateAdmitted : moment().startOf('day').valueOf(),
+            dateDischarged: entry ? entry.dateDischarged : moment().startOf('day').valueOf(),
         };
         ES6Component(this)
     }
@@ -87,7 +87,7 @@ const Hospitalisation = class extends Component {
                                                 <Text style={Styles.label}>Hospitalisation Date</Text>
                                                 <DatePicker
                                                     style={{alignSelf: "stretch", width: "100%", height: 54,}}
-                                                    date={dateAdmitted ? moment(dateAdmitted) : moment()}
+                                                    date={dateAdmitted ? moment(dateAdmitted) : moment().startOf('day')}
                                                     mode="date"
                                                     maxDate={moment()}
                                                     placeholder="Select date"
@@ -178,7 +178,7 @@ const Hospitalisation = class extends Component {
                                         <FormGroup style={[Styles.mt10, Styles.mb10]}>
                                             <Column>
                                                 <Button onPress={() => this.save(false)}
-                                                        disabled={!isConnected || this.state.saving}>
+                                                        disabled={!isConnected || this.state.saving || !reason}>
                                                     {this.state.saving ? "Saving..." : "Save"}
                                                 </Button>
                                             </Column>
