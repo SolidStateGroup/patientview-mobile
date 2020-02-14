@@ -13,6 +13,10 @@ module.exports = {
         backgroundColor: colour.google
     },
 
+    buttonSecondary: {
+        backgroundColor: colour.btnSecondary,
+    },
+
     //Button
 
     buttonWithIcon: {
@@ -80,5 +84,8 @@ module.exports = {
     buttonRight:{
         width:(DeviceWidth / 2) - 15,
         marginLeft:10
+    },
+    buttonOedema: {
+        width: 40,
     },
 };

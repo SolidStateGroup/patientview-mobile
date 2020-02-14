@@ -209,6 +209,83 @@ module.exports = {
             message
         });
     },
+    getINSDiaryRecordings: function () {
+        Dispatcher.handleViewAction({
+            actionType: Actions.GET_INS_DIARY_RECORDINGS,
+        });
+    },
+    getMoreINSDiaryRecordings: function () {
+        Dispatcher.handleViewAction({
+            actionType: Actions.GET_MORE_INS_DIARY_RECORDINGS,
+        });
+    },
+    saveINSDiaryRecording: function (recording) {
+        Dispatcher.handleViewAction({
+            actionType: Actions.SAVE_INS_DIARY_RECORDING,
+            recording,
+        });
+    },
+    updateINSDiaryRecording: function (id, recording) {
+        Dispatcher.handleViewAction({
+            actionType: Actions.UPDATE_INS_DIARY_RECORDING,
+            id,
+            recording,
+        });
+    },
+    deleteINSDiaryRecording: function(id) {
+        Dispatcher.handleViewAction({
+            actionType: Actions.DELETE_INS_DIARY_RECORDING,
+            id,
+        });
+    },
+    getINSHospitalisations: function () {
+        Dispatcher.handleViewAction({
+            actionType: Actions.GET_INS_HOSPITALISATIONS,
+        });
+    },
+    saveINSHospitalisation: function (hospitalisation) {
+        Dispatcher.handleViewAction({
+            actionType: Actions.SAVE_INS_HOSPITALISATION,
+            hospitalisation,
+        });
+    },
+    updateINSHospitalisation: function (id, hospitalisation) {
+        Dispatcher.handleViewAction({
+            actionType: Actions.UPDATE_INS_HOSPITALISATION,
+            id,
+            hospitalisation,
+        });
+    },
+    deleteINSHospitalisation: function(id) {
+        Dispatcher.handleViewAction({
+            actionType: Actions.DELETE_INS_HOSPITALISATION,
+            id,
+        });
+    },
+    getINSImmunisations: function () {
+        Dispatcher.handleViewAction({
+            actionType: Actions.GET_INS_IMMUNISATIONS,
+        });
+    },
+    saveINSImmunisation: function (immunisation) {
+        Dispatcher.handleViewAction({
+            actionType: Actions.SAVE_INS_IMMUNISATION,
+            immunisation,
+        });
+    },
+    updateINSImmunisation: function (id, immunisation) {
+        Dispatcher.handleViewAction({
+            actionType: Actions.UPDATE_INS_IMMUNISATION,
+            id,
+            immunisation,
+        });
+    },
+    deleteINSImmunisation: function(id) {
+        Dispatcher.handleViewAction({
+            actionType: Actions.DELETE_INS_IMMUNISATION,
+            id,
+        });
+    },
 };
 
 

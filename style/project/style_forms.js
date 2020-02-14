@@ -34,4 +34,37 @@ module.exports = {
         paddingBottom: 0
     },
 
+    checkboxLabel: {
+        marginTop: 10,
+    },
+
+    tagContainer: {
+        height: 40,
+        marginRight: 5,
+        backgroundColor: '#F9FBFD',
+        borderRadius: 50,
+    },
+
+    tagText: {
+        // fontSize: styleVariables.fontSizeParagraph,
+        letterSpacing: 1.2,
+        color: '#333333',
+    },
+
+    inputDisabled: {
+        backgroundColor: '#cccccc',
+    },
+
+    inputAccessoryViewContainer: {
+        backgroundColor: '#eaeaea',
+        height: 44,
+        justifyContent: 'center',
+    },
+
+    inputAccessoryViewDone: {
+        color: 'blue',
+        alignSelf: 'flex-end',
+        marginRight: 10,
+    },
+
 };

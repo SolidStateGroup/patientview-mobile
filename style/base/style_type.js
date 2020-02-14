@@ -89,6 +89,10 @@ module.exports = {
         fontSize: styleVariables.fontSizeH3,
         fontWeight: styleVariables.headingsFontWeight,
         color: pallette.textLight
-    }
+    },
+
+    italic: {
+        fontStyle: 'italic',
+    },
 
 };

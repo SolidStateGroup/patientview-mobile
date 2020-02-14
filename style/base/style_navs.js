@@ -125,4 +125,20 @@ module.exports = {
             width: -5
         }
     },
+
+    tabBar: {
+        backgroundColor: colour.navBar,
+    },
+
+    tabBarLabel: {
+        color: 'white',
+    },
+
+    tabBarIndicator: {
+        backgroundColor: 'white',
+    },
+
+    tabBarTab: {
+        width: 150,
+    },
 };

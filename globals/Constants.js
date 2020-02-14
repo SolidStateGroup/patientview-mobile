@@ -51,6 +51,56 @@ global.Constants = {
         "ALPHABETICALLY": "Alphabetical",
         "REVERSE_ALPHABETICALLY": "Reverse Alphabetical",
     },
+    urineProteinDipstick: {
+        'NEGATIVE': 'Negative',
+        'TRACE': 'Trace',
+        'ONE': 'One+',
+        'TWO': 'Two+',
+        'THREE': 'Three+',
+        'FOUR': 'Four+',
+    },
+    oedemas: {
+        'NONE': 'None',
+        'ANKLES': 'Ankles',
+        'LEGS': 'Legs',
+        'HANDS': 'Hands',
+        'ABDOMEN': 'Abdomen',
+        'NECK': 'Neck',
+        'EYES': 'Eyes',
+    },
+    relapseMedication: {
+        'ORAL_PREDNISOLONE': 'Oral Prednisolone',
+        'METHYL_ORAL_PREDNISOLONE': 'Methyl Prednisolone',
+        'OTHER': 'Other',
+    },
+    relapseMedicationFrequency: {
+        'ONE_DAY': 'once a day',
+        'TWO_DAY': 'X2 a day',
+        'THREE_DAY': 'X3 a day',
+        'FOUR_DAY': 'X4 a day',
+    },
+    relapseMedicationUnits: {
+        'MG': 'Mg',
+        'G': 'g',
+        'IU': 'iU',
+    },
+    relapseMedicationRoutes: {
+        'ORAL': 'Oral',
+        'IV': 'IV',
+        'IM': 'IM',
+    },
+    immunisationCodes: {
+        MMR: 'MMR',
+        PNEUMOCCAL: 'Pneumoccal',
+        ROTAVIRUS: 'Rotavirus',
+        MEN_B: 'MenB',
+        MEN_ASWY: 'MenACWY',
+        VERICELLA: 'Varicella',
+        HIB_MENC: 'Hib/MenC',
+        FLU: 'Flu',
+        HPV: 'HPV',
+        OTHER: 'Other',
+    },
     simulate: { //Simulate certain events to test the behaviour
         SCREENSHOT: false, //Always alert file upload is too big
         FILESIZE_WARNING: false, //Always alert file upload is too big
