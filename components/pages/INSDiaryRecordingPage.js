@@ -303,11 +303,11 @@ const INSDiaryRecording = class extends Component {
                                                         textStyle={systolicBPExclude ? Styles.inputDisabled : {}}
                                                     />
                                                     </Flex>
-                                                    <TouchableOpacity onPress={this.toggleSystolicExclusion}>
+                                                    <TouchableOpacity onPress={this.toggleSystolicExclusion} disabled={edit} style={edit ? Styles.disabled : {}}>
                                                         <Row>
                                                             <ION
                                                                 style={[Styles.listIcon, Styles.mr0, Styles.mt10, {
-                                                                    color: systolicBPExclude ? colour.primary : colour.listItemNav,
+                                                                    color: systolicBPExclude ? !edit ? colour.primary : Styles.inputDisabled.backgroundColor : !edit ? colour.listItemNav : 'black',
                                                                 }]}
                                                                 name={systolicBPExclude ? "ios-checkbox" : "ios-checkbox-outline"}
                                                             />
@@ -332,11 +332,11 @@ const INSDiaryRecording = class extends Component {
                                                             textStyle={diastolicBPExclude ? Styles.inputDisabled : {}}
                                                         />
                                                     </Flex>
-                                                    <TouchableOpacity onPress={this.toggleDiastolicExclusion}>
+                                                    <TouchableOpacity onPress={this.toggleDiastolicExclusion} disabled={edit} style={edit ? Styles.disabled : {}}>
                                                         <Row>
                                                             <ION
                                                                 style={[Styles.listIcon, Styles.mr0, Styles.mt10, {
-                                                                    color: diastolicBPExclude ? colour.primary : colour.listItemNav,
+                                                                    color: diastolicBPExclude ? !edit ? colour.primary : Styles.inputDisabled.backgroundColor : !edit ? colour.listItemNav : 'black',
                                                                 }]}
                                                                 name={diastolicBPExclude ? "ios-checkbox" : "ios-checkbox-outline"}
                                                             />
@@ -361,11 +361,11 @@ const INSDiaryRecording = class extends Component {
                                                             textStyle={weightExclude ? Styles.inputDisabled : {}}
                                                         />
                                                     </Flex>
-                                                    <TouchableOpacity onPress={this.toggleWeightExclusion}>
+                                                    <TouchableOpacity onPress={this.toggleWeightExclusion} disabled={edit} style={edit ? Styles.disabled : {}}>
                                                         <Row>
                                                             <ION
                                                                 style={[Styles.listIcon, Styles.mr0, Styles.mt10, {
-                                                                    color: weightExclude ? colour.primary : colour.listItemNav,
+                                                                    color: weightExclude ? !edit ? colour.primary : Styles.inputDisabled.backgroundColor : colour.listItemNav,
                                                                 }]}
                                                                 name={weightExclude ? "ios-checkbox" : "ios-checkbox-outline"}
                                                             />
