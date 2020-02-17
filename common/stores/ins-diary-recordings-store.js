@@ -26,7 +26,9 @@ var controller = {
                     store.model = _.orderBy(store.model, recording => recording.entryDate, ['desc']);
                     SecuredStorage.setItem('ins-diary-recordings', store.model);
                     store.saved();
-                }).catch(_.partial(AjaxHandler.error, store));
+                })
+                .then(() => controller.get())
+                .catch(_.partial(AjaxHandler.error, store));
         },
         update: function (id, recording) {
             store.saving();
@@ -38,7 +40,9 @@ var controller = {
                     }
                     SecuredStorage.setItem('ins-diary-recordings', store.model);
                     store.saved();
-                }).catch(_.partial(AjaxHandler.error, store));
+                })
+                .then(() => controller.get())
+                .catch(_.partial(AjaxHandler.error, store));
         },
         delete: function (id) {
             store.saving();
@@ -50,7 +54,9 @@ var controller = {
                     }
                     SecuredStorage.setItem('ins-diary-recordings', store.model);
                     store.saved();
-                }).catch(_.partial(AjaxHandler.error, store));
+                })
+                .then(() => controller.get())
+                .catch(_.partial(AjaxHandler.error, store));
         },
     },
     store = _.assign({}, BaseStore, {

@@ -50,15 +50,15 @@ const INSDiaryRecording = class extends Component {
 
     setSystolicBP = (value) => this.setState({systolicBP: value ? value.match(/^\d+$/g) ? value : this.state.systolicBP : ''});
 
-    toggleSystolicExclusion = () => this.setState({systolicBPExclude: !this.state.systolicBPExclude});
+    toggleSystolicExclusion = () => this.setState({systolicBPExclude: !this.state.systolicBPExclude, systolicBP: ''});
 
     setDiastolicBP = (value) => this.setState({diastolicBP: value ? value.match(/^\d+$/g) ? value : this.state.diastolicBP : ''});
 
-    toggleDiastolicExclusion = () => this.setState({diastolicBPExclude: !this.state.diastolicBPExclude});
+    toggleDiastolicExclusion = () => this.setState({diastolicBPExclude: !this.state.diastolicBPExclude, diastolicBP: ''});
 
     setWeight = (value) => this.setState({weight: value ? value.match(/^\d+\.?\d{0,1}$/g) ? value : this.state.weight : ''});
 
-    toggleWeightExclusion = () => this.setState({weightExclude: !this.state.weightExclude});
+    toggleWeightExclusion = () => this.setState({weightExclude: !this.state.weightExclude, weight: ''});
 
     showInRelapseOptions = () => this.showYesNoOptions('inRelapse', 'Relapse');
 
@@ -79,12 +79,18 @@ const INSDiaryRecording = class extends Component {
     }
 
     showOedemaOptions = () => {
-        API.showOptions("Dipstick type", _.flatMap(Constants.oedemas), true)
+        API.showOptions("Oedema", _.flatMap(Constants.oedemas), true)
             .then((i)=> {
                 if (i < Object.keys(Constants.oedemas).length) {
                     const oedema = this.state.oedema;
                     const selectedOedema = Object.keys(Constants.oedemas)[i];
-                    this.setState({selectedOedema, oedema: (oedema && oedema.length) ? oedema : [selectedOedema]})
+                    if (selectedOedema !== 'NONE') {
+                        const index = oedema && oedema.indexOf('NONE');
+                        if (index != null && index !== -1) {
+                            oedema.splice(index, 1);
+                        }
+                    }
+                    this.setState({selectedOedema, oedema: (selectedOedema !== 'NONE' && oedema && oedema.length) ? oedema : [selectedOedema]})
                 }
             })
     }
@@ -110,7 +116,7 @@ const INSDiaryRecording = class extends Component {
     setRemissionDate = (date) => this.setState({relapse: { ...this.state.relapse, remissionDate: moment(date, 'DD-MM-YYYY').valueOf() }});
 
     removeRelapseMedication = (index) => {
-        const medications = _.get(this.state, 'relapse.medications');
+        const medications = _.clone(_.get(this.state, 'relapse.medications'));
         if (!medications || medications.length < index) return;
         medications.splice(index, 1);
         this.setState({relapse: { ...this.state.relapse, medications }});
@@ -129,6 +135,11 @@ const INSDiaryRecording = class extends Component {
 
         if ((!systolicBPExclude && !systolicBP) || (!diastolicBPExclude && !diastolicBP) || (!weightExclude && !weight)) {
             Alert.alert('Error', 'Weight/Blood pressure needs to be entered, or tick Not Measured if unavailable.');
+            return;
+        }
+        
+        if (inRelapse == null) {
+            Alert.alert('Error', 'Relapse is a required field.');
             return;
         }
 
@@ -228,7 +239,6 @@ const INSDiaryRecording = class extends Component {
             weight, weightExclude, selectedOedema, oedema, relapse, inRelapse,
         } = this.state;
         const { entry } = this.props;
-        console.log(edit, entry);
         return (
             <Flex>
                 <NetworkProvider>
@@ -496,7 +506,7 @@ const INSDiaryRecording = class extends Component {
                                                             <Column>
                                                                 <Text style={Styles.label}>Common Cold</Text>
                                                                 <SelectBox onPress={this.showCommonColdOptions} style={{width: 150}}>
-                                                                    {_.get(relapse, 'commonCold') == null ? '' : _.get(relapse, 'commonCold') ? 'Yes' : 'No'}
+                                                                    {_.get(relapse, 'commonCold') ? 'Yes' : 'No'}
                                                                 </SelectBox>
                                                             </Column>
                                                         </FormGroup>
@@ -506,7 +516,7 @@ const INSDiaryRecording = class extends Component {
                                                             <Column>
                                                                 <Text style={Styles.label}>Hay Fever</Text>
                                                                 <SelectBox onPress={this.showHayFeverOptions} style={{width: 150}}>
-                                                                    {_.get(relapse, 'hayFever') == null ? '' : _.get(relapse, 'hayFever') ? 'Yes' : 'No'}
+                                                                    {_.get(relapse, 'hayFever') ? 'Yes' : 'No'}
                                                                 </SelectBox>
                                                             </Column>
                                                         </FormGroup>
@@ -518,7 +528,7 @@ const INSDiaryRecording = class extends Component {
                                                             <Column>
                                                                 <Text style={Styles.label}>Allergic Reaction</Text>
                                                                 <SelectBox onPress={this.showAllergicReactionOptions} style={{width: 150}}>
-                                                                    {_.get(relapse, 'allergicReaction') == null ? '' : _.get(relapse, 'allergicReaction') ? 'Yes' : 'No'}
+                                                                    {_.get(relapse, 'allergicReaction') ? 'Yes' : 'No'}
                                                                 </SelectBox>
                                                             </Column>
                                                         </FormGroup>
@@ -528,7 +538,7 @@ const INSDiaryRecording = class extends Component {
                                                             <Column>
                                                                 <Text style={Styles.label}>Allergic Skin Rash</Text>
                                                                 <SelectBox onPress={this.showAllergicSkinRashOptions} style={{width: 150}}>
-                                                                    {_.get(relapse, 'allergicSkinRash') == null ? '' : _.get(relapse, 'allergicSkinRash') ? 'Yes' : 'No'}
+                                                                    {_.get(relapse, 'allergicSkinRash') ? 'Yes' : 'No'}
                                                                 </SelectBox>
                                                             </Column>
                                                         </FormGroup>
@@ -540,7 +550,7 @@ const INSDiaryRecording = class extends Component {
                                                             <Column>
                                                                 <Text style={Styles.label}>Food Intolerance</Text>
                                                                 <SelectBox onPress={this.showFoodIntoleranceOptions} style={{width: 150}}>
-                                                                    {_.get(relapse, 'foodIntolerance') == null ? '' : _.get(relapse, 'foodIntolerance') ? 'Yes' : 'No'}
+                                                                    {_.get(relapse, 'foodIntolerance') ? 'Yes' : 'No'}
                                                                 </SelectBox>
                                                             </Column>
                                                         </FormGroup>

@@ -44,10 +44,11 @@ const Immunisation = class extends Component {
     setOtherImmunisationType = (other) => this.setState({other});
 
     save = () => {
-        const { edit, id, immunisationDate, codelist } = this.state;
+        const { edit, id, immunisationDate, codelist, other } = this.state;
         const immunisation = {
             immunisationDate,
             codelist,
+            other,
         }
         if (edit) {
             AppActions.updateINSImmunisation(id, immunisation);
