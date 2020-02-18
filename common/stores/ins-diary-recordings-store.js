@@ -7,6 +7,7 @@ var controller = {
             return data.get(Project.api + 'user/' + AccountStore.getUserId() + '/insdiary?size=10' + (page ? `&page=${page}` : ''))
                 .then((res)=> {
                     store.model = page ? _.unionBy(res.content, store.model, 'id') : res.content;
+                    store.model = _.orderBy(store.model, recording => recording.entryDate, ['desc']);
                     store.hasMore = !res.last && (res.number + 1);
                     SecuredStorage.setItem('ins-diary-recordings', store.model);
                     store.loaded();
