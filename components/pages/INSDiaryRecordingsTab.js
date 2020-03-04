@@ -118,7 +118,7 @@ const TheComponent = class extends Component {
         const {isLoading, recordings} = this.state;
         const { addEntry } = this.props;
         const mostRecentRecording = INSDiaryRecordingsStore.getMostRecentRecording();
-        return isLoading ?
+        return isLoading && (!recordings || !recordings.length) ?
             <Flex>
                 <NetworkBar message="It seems you are offline, you need to be online to record an INS diary entry."/>
                 <View style={Styles.centeredContainer}>
