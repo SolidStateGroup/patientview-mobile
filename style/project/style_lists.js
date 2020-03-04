@@ -90,5 +90,11 @@ module.exports = {
             height: 0,
             width: 0
         }
-    }
+    },
+
+    insDiaryListItem: {
+        borderBottomWidth: 1,
+        borderBottomColor: colour.divider,
+        paddingBottom: styleVariables.paddingBase,
+    },
 };

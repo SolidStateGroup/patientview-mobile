@@ -16,6 +16,12 @@ Navigation.registerComponent('/conditions', () => require('./components/pages/Co
 Navigation.registerComponent('/edit-result', () => require('./components/pages/EditResultPage'));
 Navigation.registerComponent('/edit-results', () => require('./components/pages/EditResultsPage'));
 
+Navigation.registerComponent('/ins-diary-recordings', () => require('./components/pages/INSDiaryRecordingsPage'));
+Navigation.registerComponent('/ins-diary-recording', () => require('./components/pages/INSDiaryRecordingPage'));
+Navigation.registerComponent('/add-relapse-medication', () => require('./components/pages/AddRelapseMedicationPage'));
+Navigation.registerComponent('/ins-hospitalisation', () => require('./components/pages/HospitalisationPage'));
+Navigation.registerComponent('/ins-immunisation', () => require('./components/pages/ImmunisationPage'));
+
 //Utility pages
 Navigation.registerComponent('/info', () => require('./components/pages/InfoModal'));
 Navigation.registerComponent('/image-preview', () => require('./components/pages/ImagePreview'));

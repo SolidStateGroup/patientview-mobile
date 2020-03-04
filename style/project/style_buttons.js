@@ -28,4 +28,8 @@ module.exports = {
     buttonSup:{
         fontSize:styleVariables.fontSizeBase / 1.5,
     },
+
+    buttonINSDiaryRecordings: {
+        backgroundColor: 'rgb(87, 45, 129)',	
+    },
 };

@@ -140,9 +140,11 @@ const Input = class TextInput extends React.Component {
                     blurOnSubmit={this.props.multiline ? false : true}
                     placeholder={this.props.placeholder}
                     editable={this.props.editable || !this.props.disabled}
-                    style={[Styles.textInput, this.props.textStyle]}
+                    style={[Styles.textInput, this.props.textStyle, {flex: 1}]}
                     onSubmitEditing={this.props.onSubmit}
-                    keyboardType={this.props.keyboardType}/>
+                    keyboardType={this.props.keyboardType}
+                    inputAccessoryViewID={this.props.inputAccessoryViewID}
+                />
             </Animated.View>
         );
     }

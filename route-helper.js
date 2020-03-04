@@ -490,6 +490,51 @@ module.exports = {
         }, true)
     },
 
+    goINSDiaryRecordings: (navigator) => {
+        navigator.push({
+            screen: "/ins-diary-recordings",
+            title: "INS Diary Recordings",
+            backButtonTitle: "",
+            passProps: {}
+        });
+    },
+
+    goINSDiaryRecording: (navigator, entry, edit) => {
+        navigator.push({
+            screen: "/ins-diary-recording",
+            title: `${edit ? 'Editing' : 'New'} Recording`,
+            backButtonTitle: "",
+            passProps: { entry, edit }
+        })
+    },
+
+    addRelapseMedication: (navigator, onAdd) => {
+        navigator.showModal({
+            screen: '/add-relapse-medication',
+            title: 'Add Medication',
+            backButtonTitle: "",
+            passProps: { onAdd }
+        });
+    },
+
+    goINSHospitalisation: (navigator, entry) => {
+        navigator.push({
+            screen: "/ins-hospitalisation",
+            title: `${entry ? 'Editing' : 'New'} Hospitalisation`,
+            backButtonTitle: "",
+            passProps: { entry }
+        })
+    },
+
+    goINSImmunisation: (navigator, entry) => {
+        navigator.push({
+            screen: "/ins-immunisation",
+            title: `${entry ? 'Editing' : 'New'} Immunisation`,
+            backButtonTitle: "",
+            passProps: { entry }
+        })
+    },
+
 
 
     // closeDrawer: (navigator) => {

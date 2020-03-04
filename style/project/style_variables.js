@@ -36,6 +36,7 @@ window.colour = {
     btnText: pallette.textWhite,
     btnDefault: pallette.secondary,
     btnAlt: pallette.secondary,
+    btnSecondary: pallette.primary,
     success: '#4ea949',
     danger: '#c84d38',
 };

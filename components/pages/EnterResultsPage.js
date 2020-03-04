@@ -35,6 +35,7 @@ const TheComponent = class extends Component {
 
     render() {
         const {isLoading, resultClusters} = this.state;
+        const insDiaryRecording = AccountStore.hasGroup('INS-DIARY');
         return isLoading ?
             <Flex>
                 <NetworkBar message="It seems you are offline, you need to be online to enter your own data."/>
@@ -73,6 +74,15 @@ const TheComponent = class extends Component {
                                 </Button>
                             </Column>
                         </FormGroup>
+                        {insDiaryRecording && (
+                            <FormGroup>
+                                <Column>
+                                    <Button onPress={() => routeHelper.goINSDiaryRecordings(this.props.navigator)} style={Styles.buttonINSDiaryRecordings}>
+                                        INS Diary Recordings
+                                    </Button>
+                                </Column>
+                            </FormGroup>
+                        )}
                     </View>
                 </Flex>
             );

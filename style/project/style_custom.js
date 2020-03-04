@@ -12,4 +12,8 @@ module.exports = {
         marginBottom:styleVariables.paddingBase,
         marginTop:styleVariables.paddingBase,
     },
+    insLogo: {
+        height: 150,
+        width: 150,
+    }
 };
