@@ -35,7 +35,7 @@ const TheComponent = class extends Component {
 
     render() {
         const {isLoading, resultClusters} = this.state;
-        const insDiaryRecording = AccountStore.hasGroup('INS-DIARY');
+        const insDiaryRecording = AccountStore.hasGroupFeature('INS_DIARY');
         return isLoading ?
             <Flex>
                 <NetworkBar message="It seems you are offline, you need to be online to enter your own data."/>

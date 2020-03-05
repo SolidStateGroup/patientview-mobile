@@ -176,8 +176,8 @@ var controller = {
         getContactNumber: function () {
             return store.getUser() && store.getUser().contactNumber || "";
         },
-        hasGroup: function (group) {
-            return store.model && !!_.find(store.model.userGroups, userGroup => userGroup.name === group);
+        hasGroupFeature: function (featureName) {
+            return store.model && !!_.find(store.model.user.groupRoles, groupRole => _.find(groupRole.group.groupFeatures, feature => feature.feature.name === featureName));
         },
         getUser: function () {
             return this.model && this.model.user;

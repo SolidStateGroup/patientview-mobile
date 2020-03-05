@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
+    "aab": "cd ./android && ./gradlew bundleRelease && open ./app/build/outputs/bundle/release && cd ../",
     "android": "react-native run-android",
     "andDebug": "cd ./android & sh ./gradlew -q dependencies app:dependencies --configuration compile",
     "andClean": "cd ./android & sh ./gradlew clean && react-native run android",
