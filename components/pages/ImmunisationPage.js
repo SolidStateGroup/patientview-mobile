@@ -11,7 +11,7 @@ const Immunisation = class extends Component {
         this.state = {
             ...entry,
             edit: !!entry,
-            immunisationDate: entry ? entry.immunisationDate : moment().startOf('day'),
+            immunisationDate: entry ? entry.immunisationDate : null,
         };
         ES6Component(this)
     }
@@ -58,8 +58,8 @@ const Immunisation = class extends Component {
     };
 
     isValid = () => {
-        const { codelist, other } = this.state;
-        if (!codelist || (codelist === 'OTHER' && !other)) return false;
+        const { immunisationDate, codelist, other } = this.state;
+        if (!immunisationDate || !codelist || (codelist === 'OTHER' && !other)) return false;
         return true;
     }
 
@@ -92,10 +92,10 @@ const Immunisation = class extends Component {
                                                 <Text style={Styles.label}>Immunisation Date</Text>
                                                 <DatePicker
                                                     style={{alignSelf: "stretch", width: "100%", height: 54,}}
-                                                    date={moment(immunisationDate)}
+                                                    date={immunisationDate ? moment(immunisationDate) : null}
                                                     mode="date"
                                                     maxDate={moment()}
-                                                    placeholder="Select date"
+                                                    placeholder="Tap to select date"
                                                     format="DD-MM-YYYY"
                                                     confirmBtnText="Confirm"
                                                     cancelBtnText="Cancel"
