@@ -128,10 +128,6 @@ const TheComponent = class extends Component {
                                                     cancelBtnText="Cancel"
                                                     maxDate={moment()}
                                                     customStyles={{
-                                                        dateIcon: {
-                                                            position: 'absolute',
-                                                            width: 0
-                                                        },
                                                         dateInput: [Styles.inputContainer, {
                                                             height: 44,
                                                             alignItems: "flex-start",

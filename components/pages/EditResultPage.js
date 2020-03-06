@@ -61,10 +61,6 @@ const EditResultPage = class extends Component {
                                         confirmBtnText="Confirm"
                                         cancelBtnText="Cancel"
                                         customStyles={{
-                                            dateIcon: {
-                                                position: 'absolute',
-                                                width: 0
-                                            },
                                             dateInput: [Styles.inputContainer, {
                                                 alignItems: "flex-start",
                                                 paddingLeft: 10,

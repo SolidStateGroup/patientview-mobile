@@ -493,7 +493,7 @@ module.exports = {
     goINSDiaryRecordings: (navigator) => {
         navigator.push({
             screen: "/ins-diary-recordings",
-            title: "INS Diary Recordings",
+            title: "Nephrotic Syndrome Diary",
             backButtonTitle: "",
             passProps: {}
         });

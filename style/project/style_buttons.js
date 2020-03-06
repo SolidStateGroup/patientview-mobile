@@ -32,4 +32,9 @@ module.exports = {
     buttonINSDiaryRecordings: {
         backgroundColor: 'rgb(87, 45, 129)',	
     },
+
+    buttonINSDiaryRecordingsImage: {
+        width: 40,
+        marginRight: 5
+    },
 };

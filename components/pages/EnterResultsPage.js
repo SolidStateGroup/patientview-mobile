@@ -78,7 +78,10 @@ const TheComponent = class extends Component {
                             <FormGroup>
                                 <Column>
                                     <Button onPress={() => routeHelper.goINSDiaryRecordings(this.props.navigator)} style={Styles.buttonINSDiaryRecordings}>
-                                        INS Diary Recordings
+                                        <Row style={Styles.alignCenter}>
+                                            <Image source={require('../../images/nest-logo-2.png')} style={Styles.buttonINSDiaryRecordingsImage} resizeMode="contain" />
+                                            <Text style={Styles.buttonText}>Nephrotic Syndrome Diary</Text>
+                                        </Row>
                                     </Button>
                                 </Column>
                             </FormGroup>
