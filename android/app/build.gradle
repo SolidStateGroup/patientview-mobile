@@ -48,8 +48,8 @@ android {
         applicationId "org.patientview.mobile"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 39
-        versionName "1.11.1"
+        versionCode 40
+        versionName "1.11.2"
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
