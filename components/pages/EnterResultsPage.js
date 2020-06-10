@@ -1,4 +1,8 @@
 import React, {Component, PropTypes} from 'react';
+import ImagePicker from 'react-native-image-crop-picker';
+
+import api from '../../common/data/results';
+import { upload, getBPM } from '../../common/data/medpic';
 
 const TheComponent = class extends Component {
     displayName: 'TheComponent'
@@ -6,7 +10,7 @@ const TheComponent = class extends Component {
 
     constructor(props, context) {
         super(props, context);
-        this.state = {isLoading: true};
+        this.state = {isLoading: true, isSaving: false};
         ES6Component(this)
     }
 
@@ -32,10 +36,132 @@ const TheComponent = class extends Component {
         }
     };
 
+    takeMedPicPhoto = async (camera) => {
+        const userId = AccountStore.getUserId();
+        const imageOptions = {
+            mediaType: 'photo',
+        };
+        const promise = camera ? ImagePicker.openCamera(imageOptions) : ImagePicker.openPicker(imageOptions);
+        promise.then(res => {
+            this.setState({isSaving: true});
+            return upload(userId, res)
+        }).then(({filename}) => {
+            return getBPM(userId, filename);
+        }).then(res => {
+            const { result, ErrorDetails, ErrorMessage, ErrorCode } = res;
+            if (ErrorCode != null) {
+                this.setState({isSaving: false});
+                Alert.alert(ErrorMessage, ErrorDetails);
+                return;
+            }
+            const { systolic, diastolic, pulses } = result;
+            Alert.alert(
+                '',
+                `Please confirm you wish to save the following values to your records: BP systolic: ${systolic.value.toFixed(0)}. BP diastolic: ${diastolic.value.toFixed(0)}. Pulse: ${pulses.value.toFixed(0)}`,
+                [
+                    { text: 'No', style: 'cancel', onPress: () => this.setState({isSaving: false}) },
+                    { text: 'Yes', onPress: () => this.saveMedPicResult(result) }
+                ],
+            );
+        }).catch(e => { 
+            if (e instanceof Error && e.message === 'User cancelled image selection') return;
+            this.setState({isSaving: false});
+            console.log(e);
+            if (typeof e === 'object') {
+                const { ErrorDetails, ErrorMessage, ErrorCode } = e;
+                if (ErrorCode != null) {
+                    Alert.alert(ErrorMessage, ErrorDetails);
+                    return;
+                }
+            }
+            Alert.alert('', `Error while processing MedPic photo${typeof e === 'string' ? `: ${e}` : ''}`);
+        });
+    }
+
+    saveMedPicResult = (result) => {
+        const bloodPressurePulseCluster = _.find(this.state.resultClusters, resultCluster => {
+            return _.find(resultCluster.resultClusterObservationHeadings, heading => heading.observationHeading.code === 'bpsys');
+        })
+
+        if (!bloodPressurePulseCluster) {
+            const e = 'Could not find blood pressure / pulse result cluster';
+            console.log(e);
+            Alert.alert('', `Error while saving MedPic result: ${e}`);
+            this.setState({isSaving: false});
+            return;
+        }
+
+        let bpsysHeadingId, bpdiaHeadingId, pulseHeadingId;
+        _.each(bloodPressurePulseCluster.resultClusterObservationHeadings, heading => {
+            switch (heading.observationHeading.code) {
+                case 'bpsys':
+                    bpsysHeadingId = heading.observationHeading.id;
+                    return;
+                case 'bpdia':
+                    bpdiaHeadingId = heading.observationHeading.id;
+                    return;
+                case 'pulse':
+                    pulseHeadingId = heading.observationHeading.id;
+                    return;
+            }
+        });
+
+        if (!bpsysHeadingId || !bpdiaHeadingId || !pulseHeadingId) {
+            const e = 'Not able to find all result headers';
+            console.log(e);
+            Alert.alert('', `Error while saving MedPic result: ${e}`);
+            this.setState({isSaving: false});
+            return;
+        }
+
+        const now = moment();
+        const day = now.format("DD");
+        const month = now.format("MM");
+        const year = parseInt(now.format("YYYY"));
+        const hour = parseInt(now.format("HH"));
+        const minute = parseInt(now.format("mm"));
+        const { systolic, diastolic, pulses } = result;
+        const values = [
+            {
+                id: bpsysHeadingId,
+                value: systolic.value.toFixed(0),
+            },
+            {
+                id: bpdiaHeadingId,
+                value: diastolic.value.toFixed(0),
+            },
+            {
+                id: pulseHeadingId,
+                value: pulses.value.toFixed(0),
+            },
+        ];
+        const comments = "Results captured using MedPic";
+        api.enterResult(AccountStore.getUserId(), {day, month, year, hour, minute, values, comments})
+            .then((res) => {
+                _.each(values, (v) => {
+                    const result = _.find(bloodPressurePulseCluster.resultClusterObservationHeadings, (r) => {
+                        return parseInt(r.observationHeading && r.observationHeading.id) == parseInt(v.id);
+                    });
+                    if (result) {
+                        AppActions.getResults(result.observationHeading.code)
+                    }
+                })
+                Alert.alert('', `Readings saved successfully. BP systolic: ${systolic.value.toFixed(0)}. BP diastolic: ${diastolic.value.toFixed(0)}. Pulse: ${pulses.value.toFixed(0)}`);
+                AppActions.getResultsSummary();
+                this.setState({isSaving: false});
+            })
+            .catch(e => {
+                console.log(e);
+                Alert.alert('', `Error while saving MedPic result: ${typeof e === 'string' ? `: ${e}` : ''}`);
+                this.setState({isSaving: false});
+            });
+    }
+
 
     render() {
-        const {isLoading, resultClusters} = this.state;
+        const {isLoading, resultClusters, isSaving} = this.state;
         const insDiaryRecording = AccountStore.hasGroupFeature('INS_DIARY');
+        const medpic = AccountStore.hasGroupFeature('MEDPIC');
         return isLoading ?
             <Flex>
                 <NetworkBar message="It seems you are offline, you need to be online to enter your own data."/>
@@ -85,6 +211,42 @@ const TheComponent = class extends Component {
                                     </Button>
                                 </Column>
                             </FormGroup>
+                        )}
+                        {medpic && (
+                            <>
+                                <Container style={Styles.mt5}>
+                                    <Text style={Styles.bold}>Image-based data entry</Text>
+                                    <Text style={Styles.mt5}>Welcome to the MedPic demo. Please take a clear photo of the readings of your BP monitor. The readings will then be saved to your PatientView record.</Text>
+                                </Container>
+                                {isSaving ? (
+                                    <Flex style={Styles.centeredContainer}>
+                                        <Loader/>
+                                    </Flex>
+                                ) : (
+                                    <View>
+                                        <FormGroup>
+                                            <Column>
+                                                <Button onPress={() => this.takeMedPicPhoto(true)}>
+                                                    <Row style={Styles.alignCenter}>
+                                                        <FontAwesome style={[Styles.listItemIcon, Styles.mr5, {color: pallette.white}]} name="camera"/>
+                                                        <Text style={Styles.buttonText}>Take Photo</Text>
+                                                    </Row>
+                                                </Button>
+                                            </Column>
+                                        </FormGroup>
+                                        <FormGroup>
+                                            <Column>
+                                                <Button onPress={() => this.takeMedPicPhoto(false)}>
+                                                    <Row style={Styles.alignCenter}>
+                                                        <FontAwesome style={[Styles.listItemIcon, Styles.mr5, {color: pallette.white}]} name="image"/>
+                                                        <Text style={Styles.buttonText}>Upload Gallery Photo</Text>
+                                                    </Row>
+                                                </Button>
+                                            </Column>
+                                        </FormGroup>
+                                    </View>
+                                )}
+                            </>
                         )}
                     </View>
                 </Flex>

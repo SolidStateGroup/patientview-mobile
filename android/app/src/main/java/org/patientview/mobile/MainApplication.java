@@ -11,6 +11,7 @@ import com.reactnative.ivpusic.imagepicker.PickerPackage;
 import com.reactnative.photoview.PhotoViewPackage;
 
 import com.facebook.react.ReactApplication;
+import fr.bamlab.rnimageresizer.ImageResizerPackage;
 import com.swmansion.reanimated.ReanimatedPackage;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import com.oblador.keychain.KeychainPackage;
@@ -66,6 +67,7 @@ public class MainApplication extends NavigationApplication {
     @Override
     public List<ReactPackage> createAdditionalReactPackages() {
          return Arrays.<ReactPackage>asList(
+             new ImageResizerPackage(),
              new ReanimatedPackage(),
              new RNGestureHandlerPackage(),
              new PBKDF2Package(),

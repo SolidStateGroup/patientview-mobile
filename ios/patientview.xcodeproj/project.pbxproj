@@ -104,6 +104,7 @@
 		A3FAD24E23F1D353001D9B7B /* RNChartViewBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FAD21A23F1D353001D9B7B /* RNChartViewBase.swift */; };
 		A3FAD24F23F1D353001D9B7B /* ChartGroupHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FAD21B23F1D353001D9B7B /* ChartGroupHolder.swift */; };
 		A3FAD25023F1D353001D9B7B /* DataExtract.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FAD21C23F1D353001D9B7B /* DataExtract.swift */; };
+		A3FF825B2490E92800D3E9C5 /* libRCTImageResizer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A3FF82242490E91E00D3E9C5 /* libRCTImageResizer.a */; };
 		AD2B2485F337427987FBF314 /* libRNSVG.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E3C00FCCBD441AEA7EFA06E /* libRNSVG.a */; };
 		AF140A4B956949F9BC33FCC9 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3EDF60A5D52F4C1ABCACD6DB /* MaterialCommunityIcons.ttf */; };
 		B056D841E41844AFADE7205F /* libRNFirebase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C0AB322852F54FDF85B7FF83 /* libRNFirebase.a */; };
@@ -529,6 +530,13 @@
 			remoteGlobalIDString = E72EC1401F7ABB5A0001BC90;
 			remoteInfo = "RNDeviceInfo-tvOS";
 		};
+		A3FF82232490E91E00D3E9C5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A3FF82122490E91E00D3E9C5 /* RCTImageResizer.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5D72D2E81C16249000E22EC1;
+			remoteInfo = RCTImageResizer;
+		};
 		E50177411E6F661500058943 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 32F6143958F84BBC97A54F3F /* RNShare.xcodeproj */;
@@ -734,6 +742,7 @@
 		A3FAD21A23F1D353001D9B7B /* RNChartViewBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RNChartViewBase.swift; sourceTree = "<group>"; };
 		A3FAD21B23F1D353001D9B7B /* ChartGroupHolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartGroupHolder.swift; sourceTree = "<group>"; };
 		A3FAD21C23F1D353001D9B7B /* DataExtract.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataExtract.swift; sourceTree = "<group>"; };
+		A3FF82122490E91E00D3E9C5 /* RCTImageResizer.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTImageResizer.xcodeproj; path = "../node_modules/react-native-image-resizer/ios/RCTImageResizer.xcodeproj"; sourceTree = "<group>"; };
 		A74D12C53438E355165EDF25 /* Pods-patientview.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-patientview.debug.xcconfig"; path = "Pods/Target Support Files/Pods-patientview/Pods-patientview.debug.xcconfig"; sourceTree = "<group>"; };
 		A74DE2F7EABC4EABA1624972 /* libRCTCamera.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTCamera.a; sourceTree = "<group>"; };
 		A870DF4527034FBE806D1359 /* ReactNativeNavigation.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeNavigation.xcodeproj; path = "../node_modules/react-native-navigation/ios/ReactNativeNavigation.xcodeproj"; sourceTree = "<group>"; };
@@ -773,6 +782,7 @@
 				A39B19A123F5A9C80008FAFD /* libRNGestureHandler.a in Frameworks */,
 				A39B19A023F5A9C30008FAFD /* libRNVectorIcons.a in Frameworks */,
 				27D81F61204FF99E0062DFF9 /* libSMXCrashlytics.a in Frameworks */,
+				A3FF825B2490E92800D3E9C5 /* libRCTImageResizer.a in Frameworks */,
 				A3838C0823F2FEB90084E60C /* libRNGestureHandler.a in Frameworks */,
 				A39B199E23F5A99A0008FAFD /* libRNReanimated.a in Frameworks */,
 				27471A0F203493A4009E1DC9 /* RSKImageCropper.framework in Frameworks */,
@@ -1029,6 +1039,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				A3FF82122490E91E00D3E9C5 /* RCTImageResizer.xcodeproj */,
 				A39B192123F5948E0008FAFD /* RNVectorIcons.xcodeproj */,
 				A39B191723F590280008FAFD /* RNReanimated.xcodeproj */,
 				A3838BB723F2FE940084E60C /* RNGestureHandler.xcodeproj */,
@@ -1314,6 +1325,14 @@
 			path = radar;
 			sourceTree = "<group>";
 		};
+		A3FF82132490E91E00D3E9C5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A3FF82242490E91E00D3E9C5 /* libRCTImageResizer.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		B07141BB4A9D15A288616AD1 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -1482,6 +1501,10 @@
 				{
 					ProductGroup = 00C302BC1ABCB91800DB3ED1 /* Products */;
 					ProjectRef = 00C302BB1ABCB91800DB3ED1 /* RCTImage.xcodeproj */;
+				},
+				{
+					ProductGroup = A3FF82132490E91E00D3E9C5 /* Products */;
+					ProjectRef = A3FF82122490E91E00D3E9C5 /* RCTImageResizer.xcodeproj */;
 				},
 				{
 					ProductGroup = 78C398B11ACF4ADC00677621 /* Products */;
@@ -1990,6 +2013,13 @@
 			remoteRef = A3D4D7E42218C96C00D33C7F /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		A3FF82242490E91E00D3E9C5 /* libRCTImageResizer.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRCTImageResizer.a;
+			remoteRef = A3FF82232490E91E00D3E9C5 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		E50177421E6F661500058943 /* libRNShare.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -2273,7 +2303,7 @@
 					"\"$(SRCROOT)/Patient View\"",
 					"\"$(SRCROOT)/Patient View\"",
 				);
-				MARKETING_VERSION = 1.8.1;
+				MARKETING_VERSION = 1.9;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -2344,7 +2374,7 @@
 					"\"$(SRCROOT)/Patient View\"",
 					"\"$(SRCROOT)/Patient View\"",
 				);
-				MARKETING_VERSION = 1.8.1;
+				MARKETING_VERSION = 1.9;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
