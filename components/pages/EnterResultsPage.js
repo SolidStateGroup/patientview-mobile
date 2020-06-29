@@ -166,7 +166,6 @@ Pulse: ${pulses.value.toFixed(0)}`);
 
     render() {
         const {isLoading, resultClusters, isSaving} = this.state;
-        const insDiaryRecording = AccountStore.hasGroupFeature('INS_DIARY');
         const medpic = AccountStore.hasGroupFeature('MEDPIC');
         return isLoading ?
             <Flex>
@@ -206,17 +205,43 @@ Pulse: ${pulses.value.toFixed(0)}`);
                                 </Button>
                             </Column>
                         </FormGroup>
-                        {insDiaryRecording && (
-                            <FormGroup>
-                                <Column>
-                                    <Button onPress={() => routeHelper.goINSDiaryRecordings(this.props.navigator)} style={Styles.buttonINSDiaryRecordings}>
-                                        <Row style={Styles.alignCenter}>
-                                            <Image source={require('../../images/nest-logo-2.png')} style={Styles.buttonINSDiaryRecordingsImage} resizeMode="contain" />
-                                            <Text style={Styles.buttonText}>Nephrotic Syndrome Diary</Text>
-                                        </Row>
-                                    </Button>
-                                </Column>
-                            </FormGroup>
+                        {medpic && (
+                            <>
+                                <Container style={Styles.mt5}>
+                                    <Text style={Styles.bold}>Entering blood pressure from a photo</Text>
+                                    <Text style={Styles.mt5}>Please take a clear photo of the readings on your BP monitor. The numbers from that can automatically be saved to your PatientView record. <Text
+                                        onPress={()=>Linking.openURL('http://help.patientview.org/patientview2/howto/user-guide-for-patients/uploading-blood-pressure-from-a-photo/')}
+                                        style={[Styles.anchor, {color: colour.primary}]}>More info and help here.</Text></Text>
+                                </Container>
+                                {isSaving ? (
+                                    <Flex style={Styles.centeredContainer}>
+                                        <Loader/>
+                                    </Flex>
+                                ) : (
+                                    <View>
+                                        <FormGroup>
+                                            <Column>
+                                                <Button onPress={() => this.takeMedPicPhoto(true)}>
+                                                    <Row style={Styles.alignCenter}>
+                                                        <FontAwesome style={[Styles.listItemIcon, Styles.mr5, {color: pallette.white}]} name="camera"/>
+                                                        <Text style={Styles.buttonText}>Take Photo</Text>
+                                                    </Row>
+                                                </Button>
+                                            </Column>
+                                        </FormGroup>
+                                        <FormGroup>
+                                            <Column>
+                                                <Button onPress={() => this.takeMedPicPhoto(false)}>
+                                                    <Row style={Styles.alignCenter}>
+                                                        <FontAwesome style={[Styles.listItemIcon, Styles.mr5, {color: pallette.white}]} name="image"/>
+                                                        <Text style={Styles.buttonText}>Upload Gallery Photo</Text>
+                                                    </Row>
+                                                </Button>
+                                            </Column>
+                                        </FormGroup>
+                                    </View>
+                                )}
+                            </>
                         )}
                         {medpic && (
                             <>

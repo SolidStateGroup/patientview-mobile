@@ -45,6 +45,13 @@ module.exports = {
         width:35,
     },
 
+    listIconINS: {
+        fontSize: styleVariables.fontSizeBase * 2.5,
+        marginRight: styleVariables.paddingBase,
+        width:40,
+        height:40,
+    },
+
     listIconNav: {
         fontSize: styleVariables.fontSizeBase * 1.5,
         marginRight: styleVariables.paddingBase,
