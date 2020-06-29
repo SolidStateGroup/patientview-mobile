@@ -409,7 +409,7 @@ const INSDiaryRecording = class extends Component {
                                         <FormGroup>
                                             <Column>
                                                 <Text style={Styles.label}>Relapse</Text>
-                                                {inRelapse && <Text style={[Styles.fontSizeSmall, {color: colour.danger}, Styles.mb5]}>If you are now in remission, you must change the Relapse value below to 'No' before saving the diary entry.</Text>}
+                                                {inRelapse && !edit && <Text style={[Styles.fontSizeSmall, {color: colour.danger}, Styles.mb5]}>If you are now in remission, you must change the Relapse value below to 'No' before saving the diary entry.</Text>}
                                                 <Row>
                                                     <Flex style={!!selectedOedema ? Styles.mr10 : {}}>
                                                         <SelectBox onPress={this.showInRelapseOptions} style={{width: 150}} disabled={edit}>
