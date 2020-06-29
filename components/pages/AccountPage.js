@@ -186,7 +186,7 @@ const AccountPage = class extends Component {
         const hasLatestResult = summaries && summaries.latestObservationDate ? true : false;
         const showNewLetterBadge = true;
         const uri = Constants.simulate.SCREENSHOT ? "https://images.vexels.com/media/users/3/129733/isolated/preview/a558682b158debb6d6f49d07d854f99f-casual-male-avatar-silhouette-by-vexels.png" : Project.api + "user/" + user.id + "/picture?token=" + data.token
-
+        const insDiaryRecording = AccountStore.hasGroupFeature('INS_DIARY');
 
         return (
             <Flex>
@@ -355,6 +355,21 @@ const AccountPage = class extends Component {
                             </View>
                             <ION name="ios-arrow-forward" style={[Styles.listIconNav]}/>
                         </ListItem>
+
+                        {/*Nephrotic Syndrome Diary*/}
+                        {insDiaryRecording && (
+                            <ListItem
+                                icon={<Image source={require('../../images/nest-logo-2.png')} style={Styles.listIconINS} resizeMode="contain" />}
+                                onPress={() => routeHelper.goINSDiaryRecordings(this.props.navigator)}
+                                mergeStyle={{paddingLeft: 5}}>
+                                <View>
+                                    <Row>
+                                        <Text style={Styles.listItemTitle}>Nephrotic Syndrome Diary</Text>
+                                    </Row>
+                                </View>
+                                <ION name="ios-arrow-forward" style={[Styles.listIconNav]}/>
+                            </ListItem>
+                        )}
 
                         {/*/!*Media*!/*/}
                         <ListItem

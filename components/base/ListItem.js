@@ -22,7 +22,7 @@ const ListItem = class extends Component {
                 <TouchableOpacity
                     activeOpacity={0.8}
                     onPress={this.props.disabled ? null : this.props.onPress}>
-                    <View style={this.props.style || Styles.listItem}>
+                    <View style={this.props.style || [Styles.listItem, this.props.mergeStyle || {}]}>
                         {content}
                     </View>
                 </TouchableOpacity>
