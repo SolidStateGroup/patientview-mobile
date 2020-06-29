@@ -11,5 +11,6 @@ module.exports = {
     topicMessages: '-messages',
     env: 'prod',
     // api: 'https://7d34d656.ngrok.io/api/'
-    api: 'https://patientview.org/api/'
+    api: 'https://patientview.org/api/',
+    medpicApi: '',
 };

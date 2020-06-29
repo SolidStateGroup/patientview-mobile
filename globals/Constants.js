@@ -110,6 +110,7 @@ global.Constants = {
         NOT_READ_RESULTS: false, //Simulate new, unread resu;ts
         NO_RESULTS: false, //Simulate no results
         NO_LOCAL_IMAGE: false, //Simulate uploaded media being deleted from device (forces to fetch from api)
+        MEDPIC: false, // Simulate a MedPic response
     },
     navEvents: {
         SHOW: 'didAppear',

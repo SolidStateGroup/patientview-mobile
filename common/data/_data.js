@@ -21,8 +21,8 @@ module.exports = {
         }
     },
 
-    get: function (url, data, useString) {
-        return this._request('get', url, data || null, useString);
+    get: function (url, data, useString, headers) {
+        return this._request('get', url, data || null, useString, headers);
     },
 
     put: function (url, data, useString) {
@@ -37,13 +37,14 @@ module.exports = {
         return this._request('delete', url, data, useString);
     },
 
-    _request: function (method, url, data, useString) {
+    _request: function (method, url, data, useString, headers = {}) {
         var options = {
                 timeout: 60000,
                 method: method,
                 headers: {
                     'Accept': 'application/json',
-                    'Content-Type': 'application/json; charset=utf-8'
+                    'Content-Type': 'application/json; charset=utf-8',
+                    ...headers
                 }
             },
             req;
