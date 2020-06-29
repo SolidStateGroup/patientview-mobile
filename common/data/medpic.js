@@ -7,6 +7,7 @@ const API_KEY = 'abeTrziLeb1oOM8tUU2BG4QXJVr8rTaJ51raWzCC';
 
 module.exports = {
     upload: (userId, originalImage) => {
+        if (Constants.simulate.MEDPIC) return {};
         let promise = Promise.resolve(originalImage);
         if (originalImage.size > 1048576) {
             console.log('Resizing medpic image as it exceeds 1MB', originalImage);
@@ -35,6 +36,15 @@ module.exports = {
         });
     },
     getBPM: (userId, filename) => {
+        if (Constants.simulate.MEDPIC) {
+            return {
+                result: {
+                    systolic: { value: 18 },
+                    diastolic: { value: 88 },
+                    pulses: { value: 70 },
+                }
+            }
+        }
         return data.get(`${Project.medpicApi}bpm`, null, false, {
             patientId: userId,
             'x-api-key': API_KEY,

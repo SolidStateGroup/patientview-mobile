@@ -41,7 +41,7 @@ const TheComponent = class extends Component {
         const imageOptions = {
             mediaType: 'photo',
         };
-        const promise = camera ? ImagePicker.openCamera(imageOptions) : ImagePicker.openPicker(imageOptions);
+        const promise = !Constants.simulate.MEDPIC ? camera ? ImagePicker.openCamera(imageOptions) : ImagePicker.openPicker(imageOptions) : Promise.resolve({});
         promise.then(res => {
             this.setState({isSaving: true});
             return upload(userId, res)
@@ -57,7 +57,10 @@ const TheComponent = class extends Component {
             const { systolic, diastolic, pulses } = result;
             Alert.alert(
                 '',
-                `Please confirm you wish to save the following values to your records: BP systolic: ${systolic.value.toFixed(0)}. BP diastolic: ${diastolic.value.toFixed(0)}. Pulse: ${pulses.value.toFixed(0)}`,
+                `Please confirm you wish to save the following values to your records:
+BP systolic: ${systolic.value.toFixed(0)}
+BP diastolic: ${diastolic.value.toFixed(0)}
+Pulse: ${pulses.value.toFixed(0)}`,
                 [
                     { text: 'No', style: 'cancel', onPress: () => this.setState({isSaving: false}) },
                     { text: 'Yes', onPress: () => this.saveMedPicResult(result) }
@@ -146,7 +149,10 @@ const TheComponent = class extends Component {
                         AppActions.getResults(result.observationHeading.code)
                     }
                 })
-                Alert.alert('', `Readings saved successfully. BP systolic: ${systolic.value.toFixed(0)}. BP diastolic: ${diastolic.value.toFixed(0)}. Pulse: ${pulses.value.toFixed(0)}`);
+                Alert.alert('', `Readings saved successfully.
+BP systolic: ${systolic.value.toFixed(0)}
+BP diastolic: ${diastolic.value.toFixed(0)}
+Pulse: ${pulses.value.toFixed(0)}`);
                 AppActions.getResultsSummary();
                 this.setState({isSaving: false});
             })
@@ -215,8 +221,10 @@ const TheComponent = class extends Component {
                         {medpic && (
                             <>
                                 <Container style={Styles.mt5}>
-                                    <Text style={Styles.bold}>Image-based data entry</Text>
-                                    <Text style={Styles.mt5}>Welcome to the MedPic demo. Please take a clear photo of the readings of your BP monitor. The readings will then be saved to your PatientView record.</Text>
+                                    <Text style={Styles.bold}>Entering blood pressure from a photo</Text>
+                                    <Text style={Styles.mt5}>Please take a clear photo of the readings on your BP monitor. The numbers from that can automatically be saved to your PatientView record. <Text
+                                        onPress={()=>Linking.openURL('http://help.patientview.org/patientview2/howto/user-guide-for-patients/uploading-blood-pressure-from-a-photo/')}
+                                        style={[Styles.anchor, {color: colour.primary}]}>More info and help here.</Text></Text>
                                 </Container>
                                 {isSaving ? (
                                     <Flex style={Styles.centeredContainer}>
