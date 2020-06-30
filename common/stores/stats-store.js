@@ -11,6 +11,8 @@ var controller = {
                 controller.getStats();
             }, Project.messagePollingInterval || 20000);
 
+            const userId = AccountStore.getUserId();
+            if (!userId) return;
             api.getStats(AccountStore.getUserId())
                 .then((stats)=> {
                     store.model = stats;
@@ -35,6 +37,7 @@ var controller = {
         },
         dispatcherIndex: Dispatcher.register(this, function (payload) {
             var action = payload.action; // this is our action from handleViewAction
+            const userId = AccountStore.getUserId();
 
             switch (action.actionType) {
 
@@ -42,17 +45,23 @@ var controller = {
                     controller.getStats();
                     break;
                 case Actions.CONNECTED:
-                    AccountStore.getUserId() && controller.getStats();
+                    if (userId) controller.getStats();
                     break;
                 case Actions.DATA:
                     const data = action.data;
                     store.model = data.stats;
                     break;
                 case Actions.ACTIVE: {
-                    if (action.sessionLength > 5000) {
+                    if (action.sessionLength > 5000 && userId) {
                         controller.getStats();
                     }
                     break
+                }
+                case Actions.LOGOUT: {
+                    if (store.interval) {
+                        clearInterval(store.interval)
+                    }
+                    break;
                 }
                 default:
                     return;

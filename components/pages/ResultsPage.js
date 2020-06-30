@@ -114,7 +114,7 @@ const ResultsPage = class extends Component {
                 </FormGroup>
                 <Flex style={Styles.body}>
                     <FlatList
-                        keyExtractor={(i)=>i.id}
+                        keyExtractor={(i)=>`${i.group.id}-${i.id}`}
                         data={ResultsStore.getResultPanels(this.state.search, this.state.sort)}
                         renderItem={this.renderRow}
                     />

@@ -109,6 +109,7 @@ var controller = {
         groupFormat: "MMMM YYYY",
         dispatcherIndex: Dispatcher.register(this, function (payload) {
             var action = payload.action; // this is our action from handleViewAction
+            const userId = AccountStore.getUserId();
 
             switch (action.actionType) {
 
@@ -119,7 +120,7 @@ var controller = {
                     controller.upload(action.data);
                     break;
                 case Actions.CONNECTED:
-                    AccountStore.getUserId() && controller.getMedia();
+                    if (userId) controller.getMedia();
                     break;
                 case Actions.DELETE_MEDIA:
                     controller.delete(action.selection)
@@ -139,7 +140,7 @@ var controller = {
                     store.total = controller.calculateTotal(store.model);
                     break;
                 case Actions.ACTIVE: {
-                    if (action.sessionLength > 5000) {
+                    if (action.sessionLength > 5000 && userId) {
                         controller.getMedia(false);
                     }
                     break
