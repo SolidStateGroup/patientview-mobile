@@ -13,7 +13,6 @@ import {encrypt, decrypt} from 'react-native-simple-encryption';
 let challengeActive;
 let storage = null; //cached local storage
 
-
 let localStorageKey = '';
 const STORAGE_KEY = 'secured-storage-key'; // Stores the local storage decryption key in the keychain/keystore
 const SECRET_WORD_SERVICE = 'secret-word-hash';
@@ -176,12 +175,20 @@ const SecuredAsyncStorage = class {
                 var keys = JSON.parse(keymap).map((key) => DB_KEY + key);
                 const encryptedData = await AsyncStorage.multiGet(keys);
                 storage = {};
-                _.each(encryptedData, (val) => {
+                await _.map(encryptedData, async (val) => {
                     var storageKey = val[0].replace(DB_KEY, "");
                     if (val[1]) {
-                        var str = decrypt(localStorageKey, val[1]);
-                        // strings[storageKey] = str;
-                        storage[storageKey] = JSON.parse(str);
+                        try {
+                            var str = decrypt(localStorageKey, val[1]);
+                            
+                            storage[storageKey] = JSON.parse(str);
+                        } catch (e) {
+                            console.log(`Failed to decrypt item ${storageKey}`);
+                            if (storageKey.indexOf('result-') === 0) {
+                                await AsyncStorage.removeItem(storageKey.substr(7));
+                            }
+                            // todo: force recover other types?
+                        }
                     }
                 });
 

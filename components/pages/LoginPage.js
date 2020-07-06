@@ -33,6 +33,8 @@ const BIOMETRICS_LOCKOUT_PERMANENT = 9; // Android only.
 // todo: always show challenge screen if the user opens from force close
 global.mustAuthenticateBiometrics = false;
 
+let iOSBiometricAttempts = 0;
+
 const sessionHandler = (time) => {
     if (global.currentScreen && global.currentScreen != 'login' &&
         global.currentScreen != 'secret-word' && global.currentScreen != 'secret-word-challenge' &&
@@ -61,8 +63,19 @@ const sessionHandler = (time) => {
                             }
                         }
                     })
-                    .catch(err => {
-                        if (Platform.OS === 'ios' ? err.message === BIOMETRICS_CANCELED : (err.code == BIOMETRICS_CANCELED || err.code == BIOMETRICS_CANCELED_BY_USER || err.message == BIOMETRICS_IRISES_NOT_DETECTED)) {
+                    .catch(async err => {
+                        const isLockedByBiometrics = await AsyncStorage.getItem('biometricKeychain');
+                        if (Platform.OS === 'ios' && isLockedByBiometrics && err.message === BIOMETRICS_INCORRECT) {
+                            iOSBiometricAttempts++;
+                            if (iOSBiometricAttempts === 2) {
+                                Alert.alert('Too many attempts', 'You have attempted to unlock PatientView too many times using biometrics. Please lock and unlock your phone to retry', [
+                                    {text: 'Try again', onPress: () => sessionHandler(-1)}
+                                ]);
+                                iOSBiometricAttempts = 0;
+                                return;
+                            }
+                        }
+                        if (Platform.OS === 'ios' ? err.message === (BIOMETRICS_CANCELED || BIOMETRICS_INCORRECT) : (err.code == BIOMETRICS_CANCELED || err.code == BIOMETRICS_CANCELED_BY_USER || err.message == BIOMETRICS_IRISES_NOT_DETECTED)) {
                             Alert.alert('PatientView', 'You must authenticate using your device passcode or biometrics to continue using Patientview', Platform.OS === 'android' ? [
                                 {text: 'OK', onPress: () => sessionHandler(-1)}
                             ] : [
@@ -104,7 +117,6 @@ const sessionHandler = (time) => {
                                 global.mustAuthenticateBiometrics = true;
                                 return;
                             case BIOMETRICS_FAILED:
-                                return;
                             default:
                                 console.log(err);
                                 Alert.alert('Error', 'Sorry there was a problem accessing your data. Please log in again.');
@@ -219,7 +231,21 @@ const LoginPage = class extends Component {
                         }
                     }
                 })
-                .catch(err => {
+                .catch(async err => {
+                    const isLockedByBiometrics = await AsyncStorage.getItem('biometricKeychain');
+                    if (Platform.OS === 'ios' && isLockedByBiometrics && err.message === BIOMETRICS_INCORRECT) {
+                        iOSBiometricAttempts++;
+                        if (iOSBiometricAttempts === 5) {
+                            Alert.alert('Too many attempts', 'You have attempted to unlock PatientView too many times using biometrics. Please lock and unlock your phone to retry', [
+                                {text: 'Try again', onPress: () => {
+                                    this.setState({alertMustAuthenticate: false});
+                                    this.getSecuredStorage();
+                                }}
+                            ]);
+                            iOSBiometricAttempts = 0;
+                            return;
+                        }
+                    }
                     if (Platform.OS === 'ios' ? err.message === BIOMETRICS_CANCELED || BIOMETRICS_INCORRECT : (err.code == BIOMETRICS_CANCELED || err.code == BIOMETRICS_CANCELED_BY_USER || err.message == BIOMETRICS_IRISES_NOT_DETECTED)) {
                         Alert.alert('PatientView', 'You must authenticate using your device passcode or biometrics to continue using Patientview', Platform.OS === 'android' ? [
                             {text: 'OK', onPress: () => {
@@ -240,7 +266,8 @@ const LoginPage = class extends Component {
                     }
                     if (Platform.OS === 'android' && (err.code == BIOMETRICS_LOCKOUT || err.code == BIOMETRICS_LOCKOUT_PERMANENT)) {
                         Alert.alert('Unauthorized', 'Unable to authenticate. You have been logged out.');
-                        routeHelper.logout(global.currentNavigator);
+                        this.setState({isLoading: false});
+                        AppActions.logout();
                         return;
                     }
                     switch (err.message) {
@@ -250,7 +277,6 @@ const LoginPage = class extends Component {
                             this.setState({alertMustAuthenticate: true});
                             return;
                         case BIOMETRICS_FAILED:
-                            return;
                         default:
                             console.log(err.code, err.message);
                             Alert.alert('Error', 'Sorry there was a problem accessing your data. Please log in again.');
