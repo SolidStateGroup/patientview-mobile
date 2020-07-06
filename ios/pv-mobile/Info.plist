@@ -103,7 +103,9 @@
 	<key>NSFaceIDUsageDescription</key>
 	<string>Using Face ID allows you to access your data whilst offline</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string>PatientView does not use location data</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>PatientView does not use location data</string>
 	<key>NSMainNibFile</key>
 	<string>LaunchScreen</string>
 	<key>NSPhotoLibraryUsageDescription</key>
