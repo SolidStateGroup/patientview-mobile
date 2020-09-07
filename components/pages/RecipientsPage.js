@@ -32,12 +32,12 @@ const LetterContentPage = class extends Component {
                     data={this.props.conversation.conversationUsers}
                     keyProvider={(l) => l.id}
                     renderItem={({item}) => {
-                        const uri = Project.api + "conversation/" + this.props.conversation.id + "/user/" + item.user.id + "/picture?token=" + data.token
+                        const uri = Project.api + "conversation/" + this.props.conversation.id + "/user/" + item.user.id + "/picture"
                         return (
                             <ListItem>
                                 <View>
                                     <Row>
-                                        <Image style={Styles.avatar} source={{uri}}/>
+                                        <Image style={Styles.avatar} source={{uri, headers: {"X-Auth-Token": data.token}}}/>
                                         <Column>
                                             <Text style={Styles.listItemTitle}>
                                                 {item.user.forename} {item.user.surname}
