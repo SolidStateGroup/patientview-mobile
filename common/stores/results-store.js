@@ -95,7 +95,7 @@ var controller = {
                     }
                     var i = 0;
 
-
+                    store.resultsTimers = [];
                     _.each(store.getResultPanels(), (panel) => {
                         AsyncStorage.getItem(panel.code, (err, res) => {
                             let shouldUpdate = true;
@@ -106,9 +106,12 @@ var controller = {
                             }
 
                             if (shouldUpdate) {
-                                setTimeout(() => { //Sync results in a staggered fashion to prevent any CPU load
+                                const timeoutIndex = store.resultsTimers.length;
+                                store.resultsTimers.push(setTimeout(() => { //Sync results in a staggered fashion to prevent any CPU load
                                     AppActions.getResults(panel.code);
-                                }, i++ * 500);
+                                    console.log(store.resultsTimers);
+                                    store.resultsTimers[timeoutIndex] = null;
+                                }, i++ * 500));
                             }
                         });
                     });
@@ -128,6 +131,7 @@ var controller = {
         id: 'results',
         resultsSummary: null,
         availableObservationHeadings: null,
+        resultsTimers: [],
         getUnreadCount: function () {
             return store.unreadCount;
         },
@@ -208,6 +212,9 @@ var controller = {
                         clearInterval(store.interval);
                         store.interval = null;
                     }
+                    _.each(store.resultsTimers, timer => {
+                        if (timer) clearTimeout(timer);
+                    })
                 }
                 case Actions.SET_LAST_READ_RESULTS:
                     if (!store.resultsSummary)
