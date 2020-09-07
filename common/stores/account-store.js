@@ -72,23 +72,28 @@ var controller = {
             }
         },
         logout: function () {
-            AsyncStorage.removeItem("lastlogin");
-            if (store.getUserId()) {
-                API.push.unsubscribe('/topics/' + store.getUserId() + Project.topic);
-                API.push.unsubscribe('/topics/' + store.getUserId() + Project.topicMessage);
-            }
-            store.loading();
-            delete store.error;
-            delete store.token;
-            delete store.user;
-            AsyncStorage.removeItem("latestObservationDate");
-            AsyncStorage.removeItem("latestReadResult");
-            SecuredStorage.clear();
-            AsyncStorage.removeItem("user");
-            AsyncStorage.removeItem("unreadCount");
-            AsyncStorage.removeItem('biometricKeychain');
-            store.loaded();
-            store.trigger('logout');
+            accountApi.logout(_data.token)
+                .then(() => {
+                    _data.token = '';
+                    AsyncStorage.removeItem("lastlogin");
+                    if (store.getUserId()) {
+                        API.push.unsubscribe('/topics/' + store.getUserId() + Project.topic);
+                        API.push.unsubscribe('/topics/' + store.getUserId() + Project.topicMessage);
+                    }
+                    store.loading();
+                    delete store.error;
+                    delete store.token;
+                    delete store.user;
+                    AsyncStorage.removeItem("latestObservationDate");
+                    AsyncStorage.removeItem("latestReadResult");
+                    SecuredStorage.clear();
+                    AsyncStorage.removeItem("user");
+                    AsyncStorage.removeItem("unreadCount");
+                    AsyncStorage.removeItem('biometricKeychain');
+                    store.loaded();
+                    store.trigger('logout');
+                })
+                .catch(_.partial(AjaxHandler.error, store));
         },
         saveUserPhoto(base64) {
             store.saving();
