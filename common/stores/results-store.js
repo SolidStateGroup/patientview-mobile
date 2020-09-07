@@ -204,6 +204,10 @@ var controller = {
                 }
                 case Actions.LOGOUT: {
                     store.latestReadResult = null;
+                    if (store.interval) {
+                        clearInterval(store.interval);
+                        store.interval = null;
+                    }
                 }
                 case Actions.SET_LAST_READ_RESULTS:
                     if (!store.resultsSummary)
