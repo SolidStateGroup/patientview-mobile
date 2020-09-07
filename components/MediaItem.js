@@ -66,12 +66,19 @@ const MediaItem = class extends Component {
                     </View>
                 )
             case "VIDEO":
+                var source = {
+                    uri,
+                    headers: {
+                        Pragma: 'no-cache',
+                        "X-Auth-Token": data.token
+                    }
+                };
                 return (
                     <View style={{flex: 1}}>
                         <VideoPlayer
                             resizeMode="auto"
                             style={{flex: 1}}
-                            source={{uri}}
+                            source={source}
                         />
                         {footer}
                     </View>
@@ -82,7 +89,7 @@ const MediaItem = class extends Component {
     render() {
         return (
             <LocalAssetProvider uri={this.props.localPath}
-                                fallbackUri={Constants.simulate.SCREENSHOT ? this.props.url : Project.api.substring(0, Project.api.length - 1) + (this.props.type === 'IMAGE' ? this.props.thumbnail : this.props.path) + `?token=${data.token}`}>
+                                fallbackUri={Constants.simulate.SCREENSHOT ? this.props.url : Project.api.substring(0, Project.api.length - 1) + (this.props.type === 'IMAGE' ? this.props.thumbnail : this.props.path)}>
                 {(isLoading, uri) => !isLoading && this.renderRow(uri, this.props.deleted)}
             </LocalAssetProvider>
         );

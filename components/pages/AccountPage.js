@@ -185,7 +185,7 @@ const AccountPage = class extends Component {
         const showNewBadge = !this.state.isLoading && ResultsStore.hasNewResults();
         const hasLatestResult = summaries && summaries.latestObservationDate ? true : false;
         const showNewLetterBadge = true;
-        const uri = Constants.simulate.SCREENSHOT ? "https://images.vexels.com/media/users/3/129733/isolated/preview/a558682b158debb6d6f49d07d854f99f-casual-male-avatar-silhouette-by-vexels.png" : Project.api + "user/" + user.id + "/picture?token=" + data.token
+        const uri = Constants.simulate.SCREENSHOT ? "https://images.vexels.com/media/users/3/129733/isolated/preview/a558682b158debb6d6f49d07d854f99f-casual-male-avatar-silhouette-by-vexels.png" : Project.api + "user/" + user.id + "/picture"
         const insDiaryRecording = AccountStore.hasGroupFeature('INS_DIARY');
 
         return (
@@ -203,7 +203,7 @@ const AccountPage = class extends Component {
                     </ListItem>
 
                     <ListItem style={[Styles.greyContainer, Styles.paddedContainer]}
-                              icon={<CachedImage source={{uri}} style={[Styles.avatar, {color: pallette.primary}]}/>}>
+                              icon={<Image source={{uri, headers: {"X-Auth-Token": data.token}}} style={[Styles.avatar, {color: pallette.primary}]}/>}>
                         <Column>
                             <H2>
                                 {name}

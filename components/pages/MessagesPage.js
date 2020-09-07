@@ -20,10 +20,10 @@ const TR = class extends Component {
         const unread = lastMessage && !_.find(lastMessage.readReceipts, (r) => {
             return r.user.id == AccountStore.getUserId()
         });
-        const uri = Project.api + "conversation/" + content.id + "/user/" + lastMessage.user.id + "/picture?token=" + data.token
+        const uri = Project.api + "conversation/" + content.id + "/user/" + lastMessage.user.id + "/picture"
         return (
             <ListItem key={content.id} onPress={() => this.props.onPress(this.props)}>
-                <Image style={Styles.avatar} source={{uri}}/>
+                <Image style={Styles.avatar} source={{uri, headers: {"X-Auth-Token": data.token}}}/>
                 <Flex>
                     <Column>
                         <Row style={{flexWrap: "nowrap"}} space>
