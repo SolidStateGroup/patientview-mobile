@@ -126,7 +126,7 @@ const Input = class TextInput extends React.Component {
             <Animated.View onStartShouldSetResponderCapture={this.props.onPress}
                            style={[Styles.inputContainer, this.props.style, { height: this.state.height }]}>
                 <ReactNative.TextInput
-                    placeholderTextColor={styleVariables.placeholderTextColor}
+                    placeholderTextColor={colour.placeholderTextColor}
                     ref={"input"}
                     autoCorrect={this.props.autoCorrect === false ? false : true}
                     maxLength={this.props.maxLength}
