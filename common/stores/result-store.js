@@ -13,7 +13,7 @@ var controller = {
         loadedResults: function (data, code) {
             data.lastUpdated = new Date().valueOf();
             AsyncStorage.getItem("latestObservationDate", (err, res) => {
-                AsyncStorage.setItem(code, res);
+                if (!err && res) AsyncStorage.setItem(code, res);
             });
 
             //filter out invalid results

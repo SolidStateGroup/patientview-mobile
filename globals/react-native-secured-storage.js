@@ -71,23 +71,22 @@ const SecuredAsyncStorage = class {
         }
     }
 
-    clear() { //Clear out any secured storage
+    clear = async () => { //Clear out any secured storage
         challengeActive = false;
-        Keychain.resetGenericPassword({service: STORAGE_KEY}).catch(err => console.log('Error clearing keychain'));
-        Keychain.resetGenericPassword({service: SECRET_WORD_SERVICE}).catch(err => console.log('Error clearing keychain'));
-        Keychain.resetGenericPassword({service: SALT_KEY}).catch(err => console.log('Error clearing keychain'));
-        AsyncStorage.setItem(DB_KEY, "");
-        AsyncStorage.setItem(SALT_KEY, "");
-        AsyncStorage.getItem(MAP_KEY, (err, res) => {
-            if (res) {
-                var keys = JSON.parse(res).map((key) => DB_KEY + key);
-                _.each(keys, (key) => {
-                    AsyncStorage.setItem(key, "");
-                });
-            }
-        });
+        localStorageKey = '';
+        await Keychain.resetGenericPassword({service: STORAGE_KEY}).catch(err => console.log('Error clearing keychain'));
+        await Keychain.resetGenericPassword({service: SECRET_WORD_SERVICE}).catch(err => console.log('Error clearing keychain'));
+        await Keychain.resetGenericPassword({service: SALT_KEY}).catch(err => console.log('Error clearing keychain'));
+        await AsyncStorage.setItem(DB_KEY, "");
+        await AsyncStorage.setItem(SALT_KEY, "");
+        const res = await AsyncStorage.getItem(MAP_KEY);
+        if (res) {
+            var keys = JSON.parse(res).map((key) => DB_KEY + key);
+            await Promise.all(_.map(keys, (key) => {
+                return AsyncStorage.setItem(key, "");
+            }));
+        }
         storage = null;
-        return Promise.resolve();
     }
 
     async get() { // Either prompts user for biometrics/passcode or prompts user to enter secret word to unlock storage

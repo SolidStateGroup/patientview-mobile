@@ -35,27 +35,24 @@ module.exports = {
         });
     },
 
-    logout: (navigator) => {
-
+    logout: async (navigator) => {
+        await AsyncStorage.removeItem("lastlogin");
+        await SecuredStorage.clear();
         AppActions.logout();
-        SecuredStorage.clear().then(() => {
-            if (AccountStore.getUser()) {
-                if (currentScreen !== 'login') {
-                    navigator.resetTo({
-                        title: 'PatientView',
-                        navBarButtonColor: '#ffffff',
-                        navigatorStyle: {
-                            navBarButtonColor: '#ffffff',
-                            screenBackgroundColor: '#fff',
-                        },
-                        screen: '/login', // unique ID registered with Navigation.registerScreen
-                        navigatorButtons: {
-                            leftButtons: []
-                        }, // override the nav buttons for the screen, see "Adding buttons to the navigator" below (optional)
-                    });
-                }
-            }
-        });
+        if (currentScreen !== 'login') {
+            navigator.resetTo({
+                title: 'PatientView',
+                navBarButtonColor: '#ffffff',
+                navigatorStyle: {
+                    navBarButtonColor: '#ffffff',
+                    screenBackgroundColor: '#fff',
+                },
+                screen: '/login', // unique ID registered with Navigation.registerScreen
+                navigatorButtons: {
+                    leftButtons: []
+                }, // override the nav buttons for the screen, see "Adding buttons to the navigator" below (optional)
+            });
+        }
 
         setTimeout(() => { //Workaround: race condition with navigation and modals
             Navigation.dismissAllModals();

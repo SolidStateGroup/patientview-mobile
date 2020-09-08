@@ -129,7 +129,7 @@ const AccountPage = class extends Component {
                     API.push.unsubscribe('/topics/' + AccountStore.getUserId() + Project.topicMessage);
                     AccountStore.getUserId().id = null;
                     setTimeout(() => {
-                        routeHelper.logout(this.props.navigator)
+                        if (currentScreen !== 'login') routeHelper.logout(this.props.navigator)
                     }, 1000)
                 }
             });
