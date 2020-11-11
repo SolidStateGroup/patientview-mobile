@@ -96,8 +96,4 @@ Promise.all([iconsLoaded]).then(() => {
     }
 });
 
-//Start crashlytics
-import crashlytics from 'react-native-fabric-crashlytics';
-crashlytics.init();
-
 console.disableYellowBox = true;

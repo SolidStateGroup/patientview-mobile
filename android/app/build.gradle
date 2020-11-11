@@ -22,23 +22,6 @@ def enableSeparateBuildPerCPUArchitecture = false
  */
 def enableProguardInReleaseBuilds = false
 
-
-
- buildscript {
-   repositories {
-     maven { url 'https://maven.fabric.io/public' }
-   }
-   dependencies {
-     // The Fabric Gradle plugin uses an open ended version to react
-     // quickly to Android tooling updates
-     classpath 'io.fabric.tools:gradle:1.+'
-   }
- }
-
- repositories {
-   maven { url 'https://maven.fabric.io/public' }
- }
-
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
@@ -116,11 +99,6 @@ dependencies {
     implementation "com.google.firebase:firebase-core:16.0.6"
     implementation "com.google.firebase:firebase-messaging:17.3.4"
     implementation 'me.leolin:ShortcutBadger:1.1.21@aar'
-
-    implementation('com.crashlytics.sdk.android:crashlytics:2.9.1@aar') {
-        transitive = true;
-    }
-
     implementation project(':react-native-fs')
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.facebook.react:react-native:+"  // From node_modules
@@ -131,7 +109,6 @@ dependencies {
     implementation project(':lottie-react-native')
     implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
     implementation "com.android.support:design:${rootProject.ext.supportLibVersion}"
-    implementation project(':react-native-fabric')
     implementation project(':rn-fetch-blob')
     implementation project(':react-native-device-info')
 
@@ -147,6 +124,4 @@ task copyDownloadableDepsToLibs(type: Copy) {
     into 'libs'
 }
 
-
-apply plugin: 'io.fabric'
 apply plugin: 'com.google.gms.google-services'

@@ -13,10 +13,6 @@
 //  REACT_NATIVE_VIDEO
 #import <AVFoundation/AVFoundation.h>  // import
 
-//  FABRIC AND CRASHLYTICS
-#import <Fabric/Fabric.h>
-#import <Crashlytics/Crashlytics.h>
-
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -38,10 +34,6 @@
   self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
   self.window.backgroundColor = [UIColor whiteColor];
   [[RCCManager sharedInstance] initBridgeWithBundleURL:jsCodeLocation launchOptions:launchOptions];
-
-  //  FABRIC AND CRASHLYTICS
-  [Fabric with:@[[Crashlytics class]]];
-
 
   //PUSH_NOTIFICATIONS_IOS
   [FIRApp configure];

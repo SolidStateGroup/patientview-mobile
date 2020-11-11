@@ -46,10 +46,6 @@ import java.lang.reflect.Method;
 import com.facebook.react.bridge.ReadableNativeArray;
 import com.facebook.react.bridge.ReadableNativeMap;
 
-import com.crashlytics.android.Crashlytics;
-import io.fabric.sdk.android.Fabric;
-
-import com.smixx.fabric.FabricPackage;
 
 import rnpbkdf2.PBKDF2Package;
 
@@ -74,7 +70,6 @@ public class MainApplication extends NavigationApplication {
              new RNGestureHandlerPackage(),
              new PBKDF2Package(),
              new KeychainPackage(),
-             new FabricPackage(),
              new RNBottomSheetPackage(),
              new RNFirebasePackage(),
              new RNFirebaseAnalyticsPackage(), // <-- Add this line
@@ -117,9 +112,6 @@ public class MainApplication extends NavigationApplication {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
-       Fabric.with(this, new Crashlytics());
       }
 }
 

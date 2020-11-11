@@ -6,9 +6,6 @@ target 'patientview' do
 #  use_frameworks!
 
   # Pods for patientview
-
-	pod 'Fabric', '~> 1.10.2'
-	pod 'Crashlytics', '~> 3.14'
     pod 'SwiftyJSON', '4.0.0'
     pod 'Charts', '3.3.0'
     pod 'Firebase/Messaging', '~> 5.15.0'

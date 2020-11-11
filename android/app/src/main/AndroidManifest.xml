@@ -27,11 +27,6 @@
             android:icon="@mipmap/ic_launcher"
             android:theme="@style/AppTheme">
 
-        <meta-data
-                 android:name="io.fabric.ApiKey"
-                android:value="f640d8339500ff715667f64ccdc95985c4fb9fa0"
-               />
-
 
         <!--!KEYS-->
 
